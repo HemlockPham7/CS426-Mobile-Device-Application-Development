@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import TypePrimaryLabelIconStat from "./TypePrimaryLabelIconStat";
 import { Color, FontFamily, FontSize } from "../../GlobalStyles";
@@ -11,7 +11,7 @@ const Facility1 = () => {
         Booking Services
       </Text>
       <View style={styles.facility1}>
-        <View style={styles.service}>
+        <TouchableOpacity style={styles.service}>
           <TypePrimaryLabelIconStat
             chevron={require("../../assets/category-icon.png")}
             typePrimaryLabelIconStatPosition="unset"
@@ -23,8 +23,8 @@ const Facility1 = () => {
             typePrimaryLabelIconStatMarginLeft="unset"
           />
           <Text style={[styles.trips, styles.tripsTypo]}>Trips</Text>
-        </View>
-        <View style={styles.service}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.service}>
           <TypePrimaryLabelIconStat
             chevron={require("../../assets/category-icon1.png")}
             typePrimaryLabelIconStatPosition="unset"
@@ -36,8 +36,8 @@ const Facility1 = () => {
             typePrimaryLabelIconStatMarginLeft="unset"
           />
           <Text style={[styles.trips, styles.tripsTypo]}>Hotel</Text>
-        </View>
-        <View style={styles.service}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.service}>
           <TypePrimaryLabelIconStat
             chevron={require("../../assets/category-icon2.png")}
             typePrimaryLabelIconStatPosition="unset"
@@ -49,8 +49,8 @@ const Facility1 = () => {
             typePrimaryLabelIconStatMarginLeft="unset"
           />
           <Text style={[styles.trips, styles.tripsTypo]}>Transport</Text>
-        </View>
-        <View style={styles.service}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.service}>
           <TypePrimaryLabelIconStat
             chevron={require("../../assets/category-icon3.png")}
             typePrimaryLabelIconStatPosition="unset"
@@ -62,7 +62,7 @@ const Facility1 = () => {
             typePrimaryLabelIconStatMarginLeft="unset"
           />
           <Text style={[styles.trips, styles.tripsTypo]}>Events</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );

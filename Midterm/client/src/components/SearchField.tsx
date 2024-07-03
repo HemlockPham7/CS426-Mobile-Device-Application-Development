@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { FontSize, FontFamily, Color, Border, Padding } from "../../GlobalStyles";
 
@@ -29,14 +29,17 @@ const SearchField = ({
 
   return (
     <View style={[styles.searchField, styles.searchFlexBox, searchFieldStyle]}>
-      <Text style={styles.search}>Search</Text>
-      <View style={[styles.search1, styles.searchFlexBox]}>
+      <TextInput 
+        style={styles.search} 
+        placeholder="Search"
+      />
+      <TouchableOpacity style={[styles.search1, styles.searchFlexBox]}>
         <Image
           style={styles.systemIcon}
           contentFit="cover"
           source={require("../../assets/system3.png")}
         />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

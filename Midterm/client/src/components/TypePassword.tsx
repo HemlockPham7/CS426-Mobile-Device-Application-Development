@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Text, StyleSheet, View, ImageSourcePropType } from "react-native";
+import { Text, StyleSheet, View, ImageSourcePropType, TextInput } from "react-native";
 import { Image } from "expo-image";
 import { FontSize, FontFamily, Color, Border, Padding } from "../../GlobalStyles";
 
@@ -34,7 +34,10 @@ const TypePassword = ({
 
   return (
     <View style={[styles.typepassword, typePasswordStyle]}>
-      <Text style={styles.name}>{name1}</Text>
+      <TextInput 
+        style={styles.name} 
+        placeholder="Password"
+      />
       <Image style={styles.passwordIcon} contentFit="cover" source={password} />
     </View>
   );

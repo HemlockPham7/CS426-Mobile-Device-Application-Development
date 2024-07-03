@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TextInput } from "react-native";
 import { FontSize, FontFamily, Color, Border, Padding } from "../../GlobalStyles";
 
 export type TypeTextType = {
@@ -22,7 +22,10 @@ const TypeText = ({ userName, typeTextPosition }: TypeTextType) => {
 
   return (
     <View style={[styles.typetext, typeTextStyle]}>
-      <Text style={styles.name}>{userName}</Text>
+      <TextInput 
+        style={styles.name} 
+        placeholder="Email"
+      />
     </View>
   );
 };

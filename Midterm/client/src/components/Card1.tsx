@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Image } from "expo-image";
-import { StyleSheet, View, Text, ImageSourcePropType } from "react-native";
+import { StyleSheet, View, Text, ImageSourcePropType, TouchableOpacity } from "react-native";
 import TypeTripImage from "./TypeTripImage";
 import { Color, Padding, FontSize, FontFamily, Border } from "../../GlobalStyles";
 
@@ -24,7 +24,7 @@ const Card1 = ({ bookingIllustration, name1, dividerMarginTop }: Card1Type) => {
   }, [dividerMarginTop]);
 
   return (
-    <View style={[styles.card, styles.cardLayout, card1Style]}>
+    <TouchableOpacity style={[styles.card, styles.cardLayout, card1Style]}>
       <Image
         style={styles.cardLayout}
         contentFit="cover"
@@ -42,7 +42,7 @@ const Card1 = ({ bookingIllustration, name1, dividerMarginTop }: Card1Type) => {
         </View>
         <Text style={styles.name}>{name1}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
