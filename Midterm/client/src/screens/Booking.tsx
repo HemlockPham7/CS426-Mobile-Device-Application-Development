@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { Image } from "expo-image";
 import Card1 from "../components/Card1";
 import Tabbar1 from "../components/Tabbar1";
@@ -9,7 +9,7 @@ import { Padding, Color } from "../../GlobalStyles";
 const Booking = () => {
   return (
     <View style={styles.booking}>
-      <View style={styles.cards}>
+      <ScrollView style={styles.cards}>
         <Card1
           bookingIllustration={require("../../assets/booking-illustration1.png")}
           name1="Hotel"
@@ -29,7 +29,8 @@ const Booking = () => {
           name1="Events"
           dividerMarginTop={16}
         />
-      </View>
+      </ScrollView>
+
       <Tabbar1 propTop={722} />
       <TypeLabel
         title="Booking"
