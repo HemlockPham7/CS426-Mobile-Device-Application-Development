@@ -47,6 +47,7 @@ const Content1 = () => {
             typePrimaryLabelLabelStaPaddingHorizontal="unset"
             typePrimaryLabelLabelStaPaddingVertical="unset"
             typePrimaryLabelLabelStaMarginLeft="unset"
+            typePrimaryLabelLabelStaTextColor="#fff"
             onPress={navigateSearchScreen}
           />
           <View style={[styles.text1, styles.text1FlexBox]}>

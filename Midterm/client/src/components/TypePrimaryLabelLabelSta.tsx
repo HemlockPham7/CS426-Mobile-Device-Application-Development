@@ -18,6 +18,7 @@ export type TypePrimaryLabelLabelStaType = {
   typePrimaryLabelLabelStaPaddingVertical?: number | string;
   typePrimaryLabelLabelStaMarginLeft?: number | string;
   typePrimaryLabelLabelStaFlex?: number;
+  typePrimaryLabelLabelStaTextColor?: string;
   onPress?: () => void;
 };
 
@@ -39,6 +40,7 @@ const TypePrimaryLabelLabelSta = ({
   typePrimaryLabelLabelStaPaddingVertical,
   typePrimaryLabelLabelStaMarginLeft,
   typePrimaryLabelLabelStaFlex,
+  typePrimaryLabelLabelStaTextColor,
   onPress,
 }: TypePrimaryLabelLabelStaType) => {
   const typePrimaryLabelLabelStaStyle = useMemo(() => {
@@ -85,7 +87,7 @@ const TypePrimaryLabelLabelSta = ({
       onPress={onPress}
       style={[styles.typeprimaryLabellabelSta, typePrimaryLabelLabelStaStyle]}
     >
-      <Text style={styles.button} >{buttonText}</Text>
+      <Text style={[styles.button,  {color: typePrimaryLabelLabelStaTextColor}]} >{buttonText}</Text>
     </TouchableOpacity>
   );
 };
@@ -96,7 +98,6 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontWeight: "700",
     fontFamily: FontFamily.uIElementButton,
-    color: Color.lightTextWhite,
     textAlign: "center",
   },
   typeprimaryLabellabelSta: {

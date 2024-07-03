@@ -27,6 +27,7 @@ const Onboarding = () => {
         typePrimaryLabelLabelStaPaddingHorizontal="unset"
         typePrimaryLabelLabelStaPaddingVertical="unset"
         typePrimaryLabelLabelStaMarginLeft="unset"
+        typePrimaryLabelLabelStaTextColor="#fff"
         onPress={navigateSearchScreen}
       />
       <View style={styles.illustration}>

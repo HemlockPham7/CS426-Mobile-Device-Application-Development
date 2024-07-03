@@ -43,6 +43,7 @@ const Content2 = () => {
           typePrimaryLabelLabelStaPaddingHorizontal="unset"
           typePrimaryLabelLabelStaPaddingVertical="unset"
           typePrimaryLabelLabelStaMarginLeft="unset"
+          typePrimaryLabelLabelStaTextColor="#fff"
         />
         <TypePrimaryLabelLabelSta
           buttonText="Login"
@@ -51,12 +52,13 @@ const Content2 = () => {
           typePrimaryLabelLabelStaLeft="unset"
           typePrimaryLabelLabelStaWidth="unset"
           typePrimaryLabelLabelStaAlignSelf="stretch"
-          typePrimaryLabelLabelStaBackgroundColor="#fea36b"
+          typePrimaryLabelLabelStaBackgroundColor="#fff"
           typePrimaryLabelLabelStaMarginTop={16}
           typePrimaryLabelLabelStaBorderRadius={20}
           typePrimaryLabelLabelStaPaddingHorizontal="unset"
           typePrimaryLabelLabelStaPaddingVertical="unset"
           typePrimaryLabelLabelStaMarginLeft="unset"
+          typePrimaryLabelLabelStaTextColor="#fea36b"
           onPress={navigateSearchScreen}
         />
       </View>

@@ -64,6 +64,7 @@ const AccountPersonalInformation = () => {
         typePrimaryLabelLabelStaPaddingHorizontal="unset"
         typePrimaryLabelLabelStaPaddingVertical="unset"
         typePrimaryLabelLabelStaMarginLeft="unset"
+        typePrimaryLabelLabelStaTextColor="#fff"
       />
       <View style={[styles.avatar, styles.avatarLayout]}>
         <Image
