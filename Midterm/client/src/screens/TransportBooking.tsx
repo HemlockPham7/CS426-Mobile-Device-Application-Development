@@ -26,6 +26,7 @@ const TransportBooking = () => {
         />
         <Text style={styles.title}>Transport Booking</Text>
       </TouchableOpacity>
+      
       <View style={styles.content}>
         <Fields />
         <View style={styles.passengerLuggage}>
@@ -84,6 +85,7 @@ const TransportBooking = () => {
               typePrimaryLabelLabelStaPaddingHorizontal="unset"
               typePrimaryLabelLabelStaPaddingVertical="unset"
               typePrimaryLabelLabelStaMarginLeft="unset"
+              typePrimaryLabelLabelStaTextColor="#089083"
             />
             <TypePrimaryLabelLabelSta
               buttonText="Business"
@@ -98,17 +100,11 @@ const TransportBooking = () => {
               typePrimaryLabelLabelStaPaddingHorizontal="unset"
               typePrimaryLabelLabelStaPaddingVertical="unset"
               typePrimaryLabelLabelStaMarginLeft={8}
+              typePrimaryLabelLabelStaTextColor="#fff"
             />
           </View>
         </View>
-        <Facility
-          facilities="Transport"
-          convenience={require("../../assets/transport.png")}
-          convenience1={require("../../assets/transport1.png")}
-          convenience2={require("../../assets/transport2.png")}
-          convenience3={require("../../assets/transport3.png")}
-          facility
-        />
+        <Facility facility />
         <TypePrimaryLabelLabelSta
           buttonText="Search"
           typePrimaryLabelLabelStaPosition="unset"
@@ -122,6 +118,7 @@ const TransportBooking = () => {
           typePrimaryLabelLabelStaPaddingHorizontal="unset"
           typePrimaryLabelLabelStaPaddingVertical="unset"
           typePrimaryLabelLabelStaMarginLeft="unset"
+          typePrimaryLabelLabelStaTextColor="#fff"
         />
       </View>
       <Tabbar1 />
@@ -151,7 +148,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontFamily: FontFamily.headingH4,
     color: Color.lightTextSecondary,
-    textAlign: "center",
+    textAlign: "left",
   },
   component2Icon: {
     overflow: "hidden",

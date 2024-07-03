@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import TypeTitle from "./TypeTitle";
 import { Border, Color, Padding } from "../../GlobalStyles";
@@ -26,13 +26,13 @@ const Fields = () => {
             typeTitleMarginLeft="unset"
           />
         </View>
-        <View style={styles.button}>
+        <TouchableOpacity style={styles.button}>
           <Image
             style={styles.arrowsIcon}
             contentFit="cover"
             source={require("../../assets/arrows.png")}
           />
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.fields3}>
         <TypeTitle

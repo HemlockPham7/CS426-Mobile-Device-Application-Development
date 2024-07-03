@@ -24,45 +24,45 @@ const Facility = ({
   return (
     facility && (
       <View style={styles.facility}>
-        <Text style={styles.facilities}>{facilities}</Text>
+        <Text style={styles.facilities}>Transport</Text>
         <View style={styles.facility1}>
           <TypePrimaryLabelIconStat
-            chevron={require("../../assets/convenience.png")}
+            chevron={require("../../assets/transport.png")}
             typePrimaryLabelIconStatPosition="unset"
-            typePrimaryLabelIconStatBackgroundColor="#fff"
+            typePrimaryLabelIconStatBackgroundColor="#089083"
             typePrimaryLabelIconStatBorderRadius={15}
-            typePrimaryLabelIconStatWidth="unset"
-            typePrimaryLabelIconStatHeight="unset"
+            typePrimaryLabelIconStatWidth={60}
+            typePrimaryLabelIconStatHeight={60}
             typePrimaryLabelIconStatPadding={9}
             typePrimaryLabelIconStatMarginLeft="unset"
           />
           <TypePrimaryLabelIconStat
-            chevron={require("../../assets/convenience1.png")}
-            typePrimaryLabelIconStatPosition="unset"
-            typePrimaryLabelIconStatBackgroundColor="#089083"
-            typePrimaryLabelIconStatBorderRadius={15}
-            typePrimaryLabelIconStatWidth="unset"
-            typePrimaryLabelIconStatHeight="unset"
-            typePrimaryLabelIconStatPadding={9}
-            typePrimaryLabelIconStatMarginLeft={16}
-          />
-          <TypePrimaryLabelIconStat
-            chevron={require("../../assets/convenience2.png")}
-            typePrimaryLabelIconStatPosition="unset"
-            typePrimaryLabelIconStatBackgroundColor="#089083"
-            typePrimaryLabelIconStatBorderRadius={15}
-            typePrimaryLabelIconStatWidth="unset"
-            typePrimaryLabelIconStatHeight="unset"
-            typePrimaryLabelIconStatPadding={9}
-            typePrimaryLabelIconStatMarginLeft={16}
-          />
-          <TypePrimaryLabelIconStat
-            chevron={require("../../assets/convenience3.png")}
+            chevron={require("../../assets/transport1.png")}
             typePrimaryLabelIconStatPosition="unset"
             typePrimaryLabelIconStatBackgroundColor="#fff"
             typePrimaryLabelIconStatBorderRadius={15}
-            typePrimaryLabelIconStatWidth="unset"
-            typePrimaryLabelIconStatHeight="unset"
+            typePrimaryLabelIconStatWidth={60}
+            typePrimaryLabelIconStatHeight={60}
+            typePrimaryLabelIconStatPadding={9}
+            typePrimaryLabelIconStatMarginLeft={16}
+          />
+          <TypePrimaryLabelIconStat
+            chevron={require("../../assets/transport2.png")}
+            typePrimaryLabelIconStatPosition="unset"
+            typePrimaryLabelIconStatBackgroundColor="#fff"
+            typePrimaryLabelIconStatBorderRadius={15}
+            typePrimaryLabelIconStatWidth={60}
+            typePrimaryLabelIconStatHeight={60}
+            typePrimaryLabelIconStatPadding={9}
+            typePrimaryLabelIconStatMarginLeft={16}
+          />
+          <TypePrimaryLabelIconStat
+            chevron={require("../../assets/transport3.png")}
+            typePrimaryLabelIconStatPosition="unset"
+            typePrimaryLabelIconStatBackgroundColor="#fff"
+            typePrimaryLabelIconStatBorderRadius={15}
+            typePrimaryLabelIconStatWidth={60}
+            typePrimaryLabelIconStatHeight={60}
             typePrimaryLabelIconStatPadding={9}
             typePrimaryLabelIconStatMarginLeft={16}
           />
