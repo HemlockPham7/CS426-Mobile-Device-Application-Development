@@ -13,6 +13,8 @@ import WelcomeScreen from './src/screens/WelcomeScreen';
 import SignInMail from './src/screens/SignInMail';
 import Home from './src/screens/Home';
 import Booking from './src/screens/Booking';
+import Account from './src/screens/Account';
+import AccountPersonalInformation from './src/screens/AccountPersonalInformation';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +55,16 @@ export default function App() {
         <Stack.Screen
           name="Booking"
           component={Booking}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Account"
+          component={Account}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AccountPersonalInformation"
+          component={AccountPersonalInformation}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

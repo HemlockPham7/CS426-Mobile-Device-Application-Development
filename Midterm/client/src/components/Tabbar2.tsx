@@ -11,6 +11,10 @@ const Tabbar2 = () => {
     navigation.navigate("Booking");
   }
 
+  function navigateAccountScreen() {
+    navigation.navigate("Account");
+  }
+
   return (
     <View style={styles.tabbar}>
       <View style={styles.activeTab}>
@@ -37,7 +41,7 @@ const Tabbar2 = () => {
           source={require("../../assets/tabbar-icon2.png")}
         />
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.tab, styles.tabFlexBox]}>
+      <TouchableOpacity style={[styles.tab, styles.tabFlexBox]} onPress={navigateAccountScreen}>
         <Image
           style={[styles.tabbarIcon, styles.tabbarIconLayout]}
           contentFit="cover"

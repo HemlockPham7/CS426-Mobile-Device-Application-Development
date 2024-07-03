@@ -1,38 +1,22 @@
-import React, { useMemo } from "react";
+import * as React from "react";
 import { Image } from "expo-image";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Padding, FontSize, FontFamily, Color, Border } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 
-export type Tabbar1Type = {
-  /** Style props */
-  propTop?: number | string;
-};
-
-const getStyleValue = (key: string, value: string | number | undefined) => {
-  if (value === undefined) return;
-  return { [key]: value === "unset" ? undefined : value };
-};
-const Tabbar1 = ({ propTop }: Tabbar1Type) => {
-  const tabbarStyle = useMemo(() => {
-    return {
-      ...getStyleValue("top", propTop),
-    };
-  }, [propTop]);
-
+const Tabbar = () => {
   const navigation = useNavigation<any>();
 
   function navigateHomeScreen() {
     navigation.navigate("Home");
   }
 
-  function navigateAccountScreen() {
-    navigation.navigate("Account");
+  function navigateBookingScreen() {
+    navigation.navigate("Booking");
   }
 
-
   return (
-    <View style={[styles.tabbar, tabbarStyle]}>
+    <View style={styles.tabbar}>
       <TouchableOpacity style={[styles.tab, styles.tabFlexBox]} onPress={navigateHomeScreen}>
         <Image
           style={[styles.tabbarIcon, styles.tabbarIconLayout]}
@@ -40,16 +24,13 @@ const Tabbar1 = ({ propTop }: Tabbar1Type) => {
           source={require("../../assets/tabbar-icon.png")}
         />
       </TouchableOpacity>
-      <View style={[styles.activeTab, styles.tabFlexBox]}>
-        <View style={[styles.active, styles.tabFlexBox]}>
-          <Image
-            style={styles.tabbarIconLayout}
-            contentFit="cover"
-            source={require("../../assets/tabbar-icon4.png")}
-          />
-          <Text style={styles.booking}>Booking</Text>
-        </View>
-      </View>
+      <TouchableOpacity style={[styles.tab, styles.tabFlexBox]} onPress={navigateBookingScreen}>
+        <Image
+          style={styles.tabbarIconLayout}
+          contentFit="cover"
+          source={require("../../assets/tabbar-icon1.png")}
+        />
+      </TouchableOpacity>
       <TouchableOpacity style={[styles.tab, styles.tabFlexBox]}>
         <Image
           style={[styles.tabbarIcon, styles.tabbarIconLayout]}
@@ -57,13 +38,16 @@ const Tabbar1 = ({ propTop }: Tabbar1Type) => {
           source={require("../../assets/tabbar-icon2.png")}
         />
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.tab, styles.tabFlexBox]} onPress={navigateAccountScreen}>
-        <Image
-          style={[styles.tabbarIcon, styles.tabbarIconLayout]}
-          contentFit="cover"
-          source={require("../../assets/tabbar-icon5.png")}
-        />
-      </TouchableOpacity>
+      <View style={[styles.activeTab, styles.tabFlexBox]}>
+        <View style={[styles.active, styles.tabFlexBox]}>
+          <Image
+            style={[styles.tabbarIcon, styles.tabbarIconLayout]}
+            contentFit="cover"
+            source={require("../../assets/tabbar-icon3.png")}
+          />
+          <Text style={styles.account}>Account</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -86,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
-  booking: {
+  account: {
     fontSize: FontSize.bodyMRegular_size,
     lineHeight: 14,
     fontWeight: "600",
@@ -110,7 +94,7 @@ const styles = StyleSheet.create({
   },
   tabbar: {
     position: "absolute",
-    top: 704,
+    top: 722,
     left: 0,
     shadowColor: "rgba(0, 0, 0, 0.05)",
     shadowOffset: {
@@ -130,4 +114,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Tabbar1;
+export default Tabbar;
