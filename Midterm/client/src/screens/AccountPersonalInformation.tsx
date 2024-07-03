@@ -1,22 +1,23 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import Tabbar from "../components/Tabbar";
-import TypeArrow from "../components/TypeArrow";
 import TypeTitle from "../components/TypeTitle";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
-import { Border, Padding, Color } from "../../GlobalStyles";
+import { FontSize, FontFamily, Border, Padding, Color } from "../../GlobalStyles";
 
 const AccountPersonalInformation = () => {
   return (
     <View style={styles.accountPersonalInformation}>
       <Tabbar />
-      <TypeArrow
-        title="Personal Information"
-        typeArrowPosition="absolute"
-        typeArrowTop={44}
-        typeArrowLeft={0}
-      />
+      <TouchableOpacity style={styles.typearrow}>
+        <Image
+          style={styles.chevronIcon}
+          contentFit="cover"
+          source={require("../../assets/chevron.png")}
+        />
+        <Text style={styles.title}>Personal Information</Text>
+      </TouchableOpacity>
       <View style={styles.accountItem}>
         <TypeTitle
           name1="First Name"
@@ -124,6 +125,31 @@ const styles = StyleSheet.create({
     height: 812,
     overflow: "hidden",
     backgroundColor: Color.lightBackgroundScreen,
+  },
+  title: {
+    flex: 1,
+    fontSize: FontSize.headingH4_size,
+    lineHeight: 26,
+    fontWeight: "600",
+    fontFamily: FontFamily.headingH4,
+    color: Color.lightUIElementContrast,
+    textAlign: "center",
+  },
+  chevronIcon: {
+    width: 24,
+    height: 24,
+    overflow: "hidden",
+  },
+  typearrow: {
+    width: 375,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: Padding.p_base,
+    paddingTop: Padding.p_5xs,
+    paddingRight: Padding.p_21xl,
+    top: 44,
+    left: 0,
+    position: "absolute",
   },
 });
 

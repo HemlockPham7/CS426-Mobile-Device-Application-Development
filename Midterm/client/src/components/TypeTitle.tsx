@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TextInput } from "react-native";
 import { FontFamily, FontSize, Color, Border, Padding } from "../../GlobalStyles";
 
 export type TypeTitleType = {
@@ -46,14 +46,17 @@ const TypeTitle = ({
   return (
     <View style={[styles.typetitle, typeTitleStyle]}>
       <Text style={[styles.name, styles.nameTypo]}>{name1}</Text>
-      <Text style={[styles.text, styles.nameTypo]}>{text}</Text>
+      <TextInput 
+        style={[styles.text, styles.nameTypo]}
+        placeholder={text}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   nameTypo: {
-    textAlign: "center",
+    textAlign: "left",
     fontFamily: FontFamily.bodyMRegular,
   },
   name: {

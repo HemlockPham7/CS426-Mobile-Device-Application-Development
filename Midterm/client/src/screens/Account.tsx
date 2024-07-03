@@ -39,38 +39,41 @@ const Account = () => {
           <Text style={styles.personalInformation}>Personal information</Text>
         </TouchableOpacity>
 
-        <View style={[styles.item1, styles.itemFlexBox]}>
+        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]}>
           <Image
             style={[styles.accountIcon, styles.accountIconLayout]}
             contentFit="cover"
             source={require("../../assets/account-icon1.png")}
           />
           <Text style={styles.personalInformation}>Payment and cards</Text>
-        </View>
-        <View style={[styles.item1, styles.itemFlexBox]}>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]}>
           <Image
             style={styles.accountIconLayout}
             contentFit="cover"
             source={require("../../assets/account-icon2.png")}
           />
           <Text style={styles.personalInformation}>Saved</Text>
-        </View>
-        <View style={[styles.item1, styles.itemFlexBox]}>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]}>
           <Image
             style={[styles.accountIcon, styles.accountIconLayout]}
             contentFit="cover"
             source={require("../../assets/account-icon3.png")}
           />
           <Text style={styles.personalInformation}>Booking history</Text>
-        </View>
-        <View style={[styles.item1, styles.itemFlexBox]}>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]}>
           <Image
             style={[styles.accountIcon, styles.accountIconLayout]}
             contentFit="cover"
             source={require("../../assets/account-icon4.png")}
           />
           <Text style={styles.personalInformation}>Settings</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <TypeSecondaryLabelLabel
         chevron={require("../../assets/account-icon5.png")}

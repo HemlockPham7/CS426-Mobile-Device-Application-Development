@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Image } from "expo-image";
-import { StyleSheet, Text, View, ImageSourcePropType } from "react-native";
+import { StyleSheet, Text, View, ImageSourcePropType, TouchableOpacity } from "react-native";
 import { FontSize, FontFamily, Color, Border, Padding } from "../../GlobalStyles";
 
 export type TypeSecondaryLabelLabelType = {
@@ -41,12 +41,12 @@ const TypeSecondaryLabelLabel = ({
   ]);
 
   return (
-    <View
+    <TouchableOpacity
       style={[styles.typesecondaryLabellabel, typeSecondaryLabelLabelStyle]}
     >
       <Image style={styles.chevronIcon} contentFit="cover" source={chevron} />
       <Text style={styles.button}>{button}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontWeight: "700",
     fontFamily: FontFamily.uIElementButton,
-    color: Color.peach300,
+    color: Color.alertsError,
     textAlign: "center",
     marginLeft: 8,
   },
