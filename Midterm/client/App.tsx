@@ -13,6 +13,7 @@ import Booking from './src/screens/Booking';
 import Account from './src/screens/Account';
 import AccountPersonalInformation from './src/screens/AccountPersonalInformation';
 import TransportBooking from './src/screens/TransportBooking';
+import TransportFlights from './src/screens/TransportFlights';
 
 const Stack = createNativeStackNavigator();
 
@@ -68,6 +69,11 @@ export default function App() {
         <Stack.Screen
           name="AccountPersonalInformation"
           component={AccountPersonalInformation}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TransportFlights"
+          component={TransportFlights}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

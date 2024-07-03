@@ -16,6 +16,10 @@ const TransportBooking = () => {
     navigation.navigate("Booking");
   }
 
+  function navigateTransportFlightsScreen() {
+    navigation.navigate("TransportFlights");
+  }
+
   return (
     <View style={styles.transportBooking}>
       <TouchableOpacity style={styles.typearrow} onPress={navigateBookingScreen}>
@@ -119,6 +123,7 @@ const TransportBooking = () => {
           typePrimaryLabelLabelStaPaddingVertical="unset"
           typePrimaryLabelLabelStaMarginLeft="unset"
           typePrimaryLabelLabelStaTextColor="#fff"
+          onPress={navigateTransportFlightsScreen}
         />
       </View>
       <Tabbar1 />
