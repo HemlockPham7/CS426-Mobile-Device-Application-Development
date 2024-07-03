@@ -3,8 +3,15 @@ import { Text, StyleSheet, View } from "react-native";
 import { Image } from "expo-image";
 import TypePrimaryLabelLabelSta from "./TypePrimaryLabelLabelSta";
 import { Color, FontSize, FontFamily, Padding } from "../../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const Content2 = () => {
+  const navigation = useNavigation<any>();
+
+  function navigateSearchScreen() {
+    navigation.navigate("SignInMail");
+  }
+
   return (
     <View style={styles.content}>
       <View style={styles.welcomeText}>
@@ -44,12 +51,13 @@ const Content2 = () => {
           typePrimaryLabelLabelStaLeft="unset"
           typePrimaryLabelLabelStaWidth="unset"
           typePrimaryLabelLabelStaAlignSelf="stretch"
-          typePrimaryLabelLabelStaBackgroundColor="#fff"
+          typePrimaryLabelLabelStaBackgroundColor="#fea36b"
           typePrimaryLabelLabelStaMarginTop={16}
           typePrimaryLabelLabelStaBorderRadius={20}
           typePrimaryLabelLabelStaPaddingHorizontal="unset"
           typePrimaryLabelLabelStaPaddingVertical="unset"
           typePrimaryLabelLabelStaMarginLeft="unset"
+          onPress={navigateSearchScreen}
         />
       </View>
     </View>
