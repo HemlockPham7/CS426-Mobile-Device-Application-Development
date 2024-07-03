@@ -15,6 +15,10 @@ const TransportFilters = () => {
     navigation.navigate("TransportFlights");
   }
 
+  function navigateTransportSelectSeatsScreen() {
+    navigation.navigate("TransportSelectSeats");
+  }
+
   return (
     <View style={styles.transportFilters}>
       <TouchableOpacity style={styles.typearrow} onPress={navigateTransportFlightsScreen}>
@@ -259,6 +263,7 @@ const TransportFilters = () => {
           typePrimaryLabelLabelStaMarginLeft={16}
           typePrimaryLabelLabelStaFlex={1}
           typePrimaryLabelLabelStaTextColor="#fff"
+          onPress={navigateTransportSelectSeatsScreen}
         />
       </View>
     </View>
