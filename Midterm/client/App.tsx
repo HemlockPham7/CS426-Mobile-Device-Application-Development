@@ -62,6 +62,11 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          name="TransportFlights"
+          component={TransportFlights}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name="Account"
           component={Account}
           options={{ headerShown: false }}
@@ -69,11 +74,6 @@ export default function App() {
         <Stack.Screen
           name="AccountPersonalInformation"
           component={AccountPersonalInformation}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="TransportFlights"
-          component={TransportFlights}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

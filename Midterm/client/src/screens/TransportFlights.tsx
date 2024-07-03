@@ -1,11 +1,17 @@
 import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import { Image } from "expo-image";
 import Card from "../components/Card";
-import TypeArrow from "../components/TypeArrow";
 import { Padding, FontSize, Color, FontFamily, Border } from "../../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const TransportFlights = () => {
+  const navigation = useNavigation<any>();
+
+  function navigateTransportBookingScreen() {
+    navigation.navigate("TransportBooking");
+  }
+
   return (
     <View style={styles.transportFlights}>
       <View style={styles.content}>
@@ -41,30 +47,38 @@ const TransportFlights = () => {
             </View>
           </View>
         </View>
+
         <View style={[styles.filter, styles.date1FlexBox]}>
           <Text style={[styles.flightsAvaliableNew, styles.textTypo]}>
             7 flights avaliable New York to London
           </Text>
-          <View style={styles.button}>
+          <TouchableOpacity style={styles.button}>
             <Image
               style={styles.systemIcon}
               contentFit="cover"
               source={require("../../assets/system1.png")}
             />
-          </View>
+          </TouchableOpacity>
         </View>
-        <View style={styles.flights}>
+
+        <ScrollView style={styles.flights}>
           <Card />
           <Card propMarginTop={16} />
           <Card propMarginTop={16} />
-        </View>
+          <Card propMarginTop={16} />
+          <Card propMarginTop={16} />
+          <Card propMarginTop={16} />
+          <Card propMarginTop={16} />
+        </ScrollView>
       </View>
-      <TypeArrow
-        title="Flights"
-        typeArrowPosition="absolute"
-        typeArrowTop={44}
-        typeArrowLeft={0}
-      />
+      <TouchableOpacity style={styles.typearrow} onPress={navigateTransportBookingScreen}>
+        <Image
+          style={styles.chevronIcon}
+          contentFit="cover"
+          source={require("../../assets/chevron.png")}
+        />
+        <Text style={styles.title}>Flights</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -142,6 +156,7 @@ const styles = StyleSheet.create({
   },
   flights: {
     marginTop: 16,
+    height: 550,
   },
   content: {
     position: "absolute",
@@ -155,6 +170,31 @@ const styles = StyleSheet.create({
     height: 812,
     overflow: "hidden",
     flex: 1,
+  },
+  title: {
+    flex: 1,
+    fontSize: FontSize.headingH4_size,
+    lineHeight: 26,
+    fontWeight: "600",
+    fontFamily: FontFamily.headingH4,
+    color: Color.lightUIElementContrast,
+    textAlign: "center",
+  },
+  chevronIcon: {
+    width: 24,
+    height: 24,
+    overflow: "hidden",
+  },
+  typearrow: {
+    width: 375,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: Padding.p_base,
+    paddingTop: Padding.p_5xs,
+    paddingRight: Padding.p_21xl,
+    top: 44,
+    left: 0,
+    position: "absolute",
   },
 });
 
