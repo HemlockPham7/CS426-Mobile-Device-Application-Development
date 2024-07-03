@@ -16,6 +16,7 @@ import TransportBooking from './src/screens/TransportBooking';
 import TransportFlights from './src/screens/TransportFlights';
 import TransportFilters from './src/screens/TransportFilters';
 import TransportSelectSeats from './src/screens/TransportSelectSeats';
+import TransportBoardingPass from './src/screens/TransportBoardingPass';
 
 const Stack = createNativeStackNavigator();
 
@@ -76,6 +77,11 @@ export default function App() {
         <Stack.Screen
           name="TransportSelectSeats"
           component={TransportSelectSeats}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TransportBoardingPass"
+          component={TransportBoardingPass}
           options={{ headerShown: false }}
         />
         <Stack.Screen

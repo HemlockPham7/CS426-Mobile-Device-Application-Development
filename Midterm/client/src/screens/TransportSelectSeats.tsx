@@ -1,12 +1,23 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import Seats from "../components/Seats";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
 import TypeArrow from "../components/TypeArrow";
 import { Padding, FontFamily, Color, Border, FontSize } from "../../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const TransportSelectSeats = () => {
+  const navigation = useNavigation<any>();
+
+  function navigateTransportFiltersScreen() {
+    navigation.navigate("TransportFilters");
+  }
+
+  function navigateTransportBoardingPassScreen() {
+    navigation.navigate("TransportBoardingPass");
+  }
+
   return (
     <View style={styles.transportSelectSeats}>
       <View style={styles.content}>
@@ -86,16 +97,19 @@ const TransportSelectSeats = () => {
           typePrimaryLabelLabelStaPaddingHorizontal="unset"
           typePrimaryLabelLabelStaPaddingVertical="unset"
           typePrimaryLabelLabelStaMarginLeft="unset"
+          typePrimaryLabelLabelStaTextColor="#fff"
+          onPress={navigateTransportBoardingPassScreen}
         />
       </View>
 
-      <TypeArrow
-        title="Select Seats"
-        typeArrowPosition="absolute"
-        typeArrowTop={44}
-        typeArrowLeft={0}
-      />
-      
+      <TouchableOpacity style={styles.typearrow} onPress={navigateTransportFiltersScreen}>
+        <Image
+          style={styles.chevronIcon}
+          contentFit="cover"
+          source={require("../../assets/chevron.png")}
+        />
+        <Text style={styles.title}>Seect Seats</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -238,6 +252,31 @@ const styles = StyleSheet.create({
     height: 812,
     overflow: "hidden",
     flex: 1,
+  },
+  title: {
+    flex: 1,
+    fontSize: FontSize.headingH4_size,
+    lineHeight: 26,
+    fontWeight: "600",
+    fontFamily: FontFamily.headingH4,
+    color: Color.lightUIElementContrast,
+    textAlign: "center",
+  },
+  chevronIcon: {
+    width: 24,
+    height: 24,
+    overflow: "hidden",
+  },
+  typearrow: {
+    width: 375,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: Padding.p_base,
+    paddingTop: Padding.p_5xs,
+    paddingRight: Padding.p_21xl,
+    top: 44,
+    left: 0,
+    position: "absolute",
   },
 });
 

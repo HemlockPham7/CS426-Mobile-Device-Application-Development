@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import ASeats from "./ASeats";
 import { Color, FontFamily, FontSize, Padding } from "../../GlobalStyles";
 
@@ -12,6 +12,7 @@ const Seats = () => {
           <ASeats aBText="B" propMarginLeft={8} />
         </View>
       </View>
+
       <View style={styles.numbers}>
         <Text style={styles.text}>1</Text>
         <Text style={[styles.text1, styles.textTypo]}>2</Text>
@@ -21,6 +22,7 @@ const Seats = () => {
         <Text style={styles.textTypo}>6</Text>
         <Text style={[styles.text1, styles.textTypo]}>7</Text>
       </View>
+
       <View style={styles.cdSeats}>
         <ASeats aBText="C" propMarginLeft="unset" />
         <ASeats aBText="D" propMarginLeft={8} />
