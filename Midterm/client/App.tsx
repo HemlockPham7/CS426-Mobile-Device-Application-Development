@@ -14,6 +14,7 @@ import Account from './src/screens/Account';
 import AccountPersonalInformation from './src/screens/AccountPersonalInformation';
 import TransportBooking from './src/screens/TransportBooking';
 import TransportFlights from './src/screens/TransportFlights';
+import TransportFilters from './src/screens/TransportFilters';
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +65,11 @@ export default function App() {
         <Stack.Screen
           name="TransportFlights"
           component={TransportFlights}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TransportFilters"
+          component={TransportFilters}
           options={{ headerShown: false }}
         />
         <Stack.Screen

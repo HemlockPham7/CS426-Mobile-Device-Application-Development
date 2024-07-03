@@ -12,6 +12,10 @@ const TransportFlights = () => {
     navigation.navigate("TransportBooking");
   }
 
+  function navigateTransportFiltersScreen() {
+    navigation.navigate("TransportFilters");
+  }
+
   return (
     <View style={styles.transportFlights}>
       <View style={styles.content}>
@@ -52,7 +56,7 @@ const TransportFlights = () => {
           <Text style={[styles.flightsAvaliableNew, styles.textTypo]}>
             7 flights avaliable New York to London
           </Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={navigateTransportFiltersScreen}>
             <Image
               style={styles.systemIcon}
               contentFit="cover"
