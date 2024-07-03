@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import Content from "../components/Content";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
-import TypeArrow from "../components/TypeArrow";
 import { FontSize, FontFamily, Color, Padding } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 

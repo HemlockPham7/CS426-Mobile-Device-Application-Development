@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Image } from "expo-image";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import TypeArrow from "../components/TypeArrow";
 import Fields from "../components/Fields";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
 import Facility from "../components/Facility";

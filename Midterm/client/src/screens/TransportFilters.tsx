@@ -1,10 +1,8 @@
 import * as React from "react";
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
-import TypeArrow from "../components/TypeArrow";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
 import PriceBox from "../components/PriceBox";
-import Facility from "../components/Facility";
 import { Padding, Color, FontSize, FontFamily } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 
