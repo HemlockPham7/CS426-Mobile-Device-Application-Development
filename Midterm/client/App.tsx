@@ -11,6 +11,7 @@ import Onboarding1 from './src/screens/Onboarding1';
 import Onboarding from './src/screens/Onboarding';
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import SignInMail from './src/screens/SignInMail';
+import Home from './src/screens/Home';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +42,11 @@ export default function App() {
         <Stack.Screen
           name="SignInMail"
           component={SignInMail}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

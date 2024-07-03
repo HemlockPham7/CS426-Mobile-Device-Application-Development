@@ -5,8 +5,15 @@ import TypeText from "./TypeText";
 import TypePassword from "./TypePassword";
 import TypePrimaryLabelLabelSta from "./TypePrimaryLabelLabelSta";
 import { Color, FontFamily, FontSize, Padding } from "../../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const Content1 = () => {
+  const navigation = useNavigation<any>();
+
+  function navigateSearchScreen() {
+    navigation.navigate("Home");
+  }
+
   return (
     <View style={styles.content}>
       <View style={styles.text}>
@@ -40,6 +47,7 @@ const Content1 = () => {
             typePrimaryLabelLabelStaPaddingHorizontal="unset"
             typePrimaryLabelLabelStaPaddingVertical="unset"
             typePrimaryLabelLabelStaMarginLeft="unset"
+            onPress={navigateSearchScreen}
           />
           <View style={[styles.text1, styles.text1FlexBox]}>
             <View style={styles.text1FlexBox}>
