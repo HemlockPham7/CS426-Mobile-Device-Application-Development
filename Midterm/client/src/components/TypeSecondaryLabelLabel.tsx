@@ -12,6 +12,7 @@ export type TypeSecondaryLabelLabelType = {
   typeSecondaryLabelLabelTop?: number | string;
   typeSecondaryLabelLabelLeft?: number | string;
   typeSecondaryLabelLabelWidth?: number | string;
+  onPress?: () => void;
 };
 
 const getStyleValue = (key: string, value: string | number | undefined) => {
@@ -25,6 +26,7 @@ const TypeSecondaryLabelLabel = ({
   typeSecondaryLabelLabelTop,
   typeSecondaryLabelLabelLeft,
   typeSecondaryLabelLabelWidth,
+  onPress,
 }: TypeSecondaryLabelLabelType) => {
   const typeSecondaryLabelLabelStyle = useMemo(() => {
     return {
@@ -42,6 +44,7 @@ const TypeSecondaryLabelLabel = ({
 
   return (
     <TouchableOpacity
+      onPress={onPress}
       style={[styles.typesecondaryLabellabel, typeSecondaryLabelLabelStyle]}
     >
       <Image style={styles.chevronIcon} contentFit="cover" source={chevron} />

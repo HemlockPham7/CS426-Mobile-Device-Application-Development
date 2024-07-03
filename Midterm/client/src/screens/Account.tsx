@@ -14,6 +14,10 @@ const Account = () => {
     navigation.navigate("AccountPersonalInformation");
   }
 
+  function navigateWelcomeScreen() {
+    navigation.navigate("WelcomeScreen");
+  }
+
   return (
     <View style={styles.account}>
       <Tabbar />
@@ -82,6 +86,7 @@ const Account = () => {
         typeSecondaryLabelLabelTop={646}
         typeSecondaryLabelLabelLeft={16}
         typeSecondaryLabelLabelWidth={343}
+        onPress={navigateWelcomeScreen}
       />
     </View>
   );
