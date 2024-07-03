@@ -10,13 +10,14 @@ export type Card1Type = {
 
   /** Style props */
   dividerMarginTop?: number | string;
+  onPress?: () => void;
 };
 
 const getStyleValue = (key: string, value: string | number | undefined) => {
   if (value === undefined) return;
   return { [key]: value === "unset" ? undefined : value };
 };
-const Card1 = ({ bookingIllustration, name1, dividerMarginTop }: Card1Type) => {
+const Card1 = ({ bookingIllustration, name1, dividerMarginTop, onPress }: Card1Type) => {
   const card1Style = useMemo(() => {
     return {
       ...getStyleValue("marginTop", dividerMarginTop),
@@ -24,7 +25,7 @@ const Card1 = ({ bookingIllustration, name1, dividerMarginTop }: Card1Type) => {
   }, [dividerMarginTop]);
 
   return (
-    <TouchableOpacity style={[styles.card, styles.cardLayout, card1Style]}>
+    <TouchableOpacity style={[styles.card, styles.cardLayout, card1Style]} onPress={onPress}>
       <Image
         style={styles.cardLayout}
         contentFit="cover"

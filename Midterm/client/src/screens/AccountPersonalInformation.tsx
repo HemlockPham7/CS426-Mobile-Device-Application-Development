@@ -5,12 +5,19 @@ import Tabbar from "../components/Tabbar";
 import TypeTitle from "../components/TypeTitle";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
 import { FontSize, FontFamily, Border, Padding, Color } from "../../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const AccountPersonalInformation = () => {
+  const navigation = useNavigation<any>();
+
+  function navigateAccountScreen() {
+    navigation.navigate("Account");
+  }
+
   return (
     <View style={styles.accountPersonalInformation}>
       <Tabbar />
-      <TouchableOpacity style={styles.typearrow}>
+      <TouchableOpacity style={styles.typearrow} onPress={navigateAccountScreen}>
         <Image
           style={styles.chevronIcon}
           contentFit="cover"

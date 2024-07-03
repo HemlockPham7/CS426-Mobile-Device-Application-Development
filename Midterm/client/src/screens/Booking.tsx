@@ -5,8 +5,15 @@ import Card1 from "../components/Card1";
 import Tabbar1 from "../components/Tabbar1";
 import TypeLabel from "../components/TypeLabel";
 import { Padding, Color } from "../../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const Booking = () => {
+  const navigation = useNavigation<any>();
+
+  function navigateTransportBookingScreen() {
+    navigation.navigate("TransportBooking");
+  }
+
   return (
     <View style={styles.booking}>
       <ScrollView style={styles.cards}>
@@ -18,6 +25,7 @@ const Booking = () => {
           bookingIllustration={require("../../assets/booking-illustration2.png")}
           name1="Transport"
           dividerMarginTop={16}
+          onPress={navigateTransportBookingScreen}
         />
         <Card1
           bookingIllustration={require("../../assets/booking-illustration3.png")}

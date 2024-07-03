@@ -3,9 +3,6 @@ import { View, Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Screen from './src/screens/Screen';
-import Screen1 from './src/screens/Screen1';
-import Screen2 from './src/screens/Screen2';
 import Onboarding2 from './src/screens/Onboarding2';
 import Onboarding1 from './src/screens/Onboarding1';
 import Onboarding from './src/screens/Onboarding';
@@ -15,6 +12,7 @@ import Home from './src/screens/Home';
 import Booking from './src/screens/Booking';
 import Account from './src/screens/Account';
 import AccountPersonalInformation from './src/screens/AccountPersonalInformation';
+import TransportBooking from './src/screens/TransportBooking';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +53,11 @@ export default function App() {
         <Stack.Screen
           name="Booking"
           component={Booking}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TransportBooking"
+          component={TransportBooking}
           options={{ headerShown: false }}
         />
         <Stack.Screen
