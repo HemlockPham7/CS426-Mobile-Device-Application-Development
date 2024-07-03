@@ -18,6 +18,7 @@ export type TypePrimaryLabelLabelStaType = {
   typePrimaryLabelLabelStaPaddingVertical?: number | string;
   typePrimaryLabelLabelStaMarginLeft?: number | string;
   typePrimaryLabelLabelStaFlex?: number;
+  onPress?: () => void;
 };
 
 const getStyleValue = (key: string, value: string | number | undefined) => {
@@ -38,6 +39,7 @@ const TypePrimaryLabelLabelSta = ({
   typePrimaryLabelLabelStaPaddingVertical,
   typePrimaryLabelLabelStaMarginLeft,
   typePrimaryLabelLabelStaFlex,
+  onPress,
 }: TypePrimaryLabelLabelStaType) => {
   const typePrimaryLabelLabelStaStyle = useMemo(() => {
     return {
@@ -82,7 +84,7 @@ const TypePrimaryLabelLabelSta = ({
     <View
       style={[styles.typeprimaryLabellabelSta, typePrimaryLabelLabelStaStyle]}
     >
-      <Text style={styles.button}>{buttonText}</Text>
+      <Text style={styles.button} onPress={onPress}>{buttonText}</Text>
     </View>
   );
 };

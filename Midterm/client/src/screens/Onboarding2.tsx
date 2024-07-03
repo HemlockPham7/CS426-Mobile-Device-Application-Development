@@ -2,10 +2,16 @@ import * as React from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { Image } from "expo-image";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
-import DarkModeNO1 from "../components/DarkModeNO1";
 import { Border, FontSize, FontFamily, Color, Padding } from "../../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const Onboarding2 = () => {
+  const navigation = useNavigation<any>(); 
+
+  function navigateSearchScreen() {
+    navigation.navigate("Onboarding1");
+  }
+
   return (
     <View style={[styles.onboarding1, styles.onboarding1Layout]}>
       <TypePrimaryLabelLabelSta
@@ -21,6 +27,7 @@ const Onboarding2 = () => {
         typePrimaryLabelLabelStaPaddingHorizontal="unset"
         typePrimaryLabelLabelStaPaddingVertical="unset"
         typePrimaryLabelLabelStaMarginLeft="unset"
+        onPress={navigateSearchScreen}
       />
 
       <View style={styles.illustration}>
