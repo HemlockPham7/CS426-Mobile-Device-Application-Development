@@ -12,6 +12,7 @@ import Onboarding from './src/screens/Onboarding';
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import SignInMail from './src/screens/SignInMail';
 import Home from './src/screens/Home';
+import Booking from './src/screens/Booking';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +48,11 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Booking"
+          component={Booking}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

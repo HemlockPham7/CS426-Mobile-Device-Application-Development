@@ -1,56 +1,63 @@
-import * as React from "react";
+import React, { useMemo } from "react";
 import { Image } from "expo-image";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { FontSize, FontFamily, Color, Border, Padding } from "../../GlobalStyles";
-import { useNavigation } from "@react-navigation/native";
+import { StyleSheet, View, Text } from "react-native";
+import { Padding, FontSize, FontFamily, Color, Border } from "../../GlobalStyles";
 
-const Tabbar2 = () => {
-  const navigation = useNavigation<any>();
-  
-  function navigateBookingScreen() {
-    navigation.navigate("Booking");
-  }
+export type Tabbar1Type = {
+  /** Style props */
+  propTop?: number | string;
+};
+
+const getStyleValue = (key: string, value: string | number | undefined) => {
+  if (value === undefined) return;
+  return { [key]: value === "unset" ? undefined : value };
+};
+const Tabbar1 = ({ propTop }: Tabbar1Type) => {
+  const tabbarStyle = useMemo(() => {
+    return {
+      ...getStyleValue("top", propTop),
+    };
+  }, [propTop]);
 
   return (
-    <View style={styles.tabbar}>
-      <View style={styles.activeTab}>
+    <View style={[styles.tabbar, tabbarStyle]}>
+      <View style={[styles.tab, styles.tabFlexBox]}>
+        <Image
+          style={[styles.tabbarIcon, styles.tabbarIconLayout]}
+          contentFit="cover"
+          source={require("../../assets/tabbar-icon.png")}
+        />
+      </View>
+      <View style={[styles.activeTab, styles.tabFlexBox]}>
         <View style={[styles.active, styles.tabFlexBox]}>
           <Image
-            style={[styles.tabbarIcon, styles.tabbarIconLayout]}
+            style={styles.tabbarIconLayout}
             contentFit="cover"
-            source={require("../../assets/tabbar-icon.png")}
+            source={require("../../assets/tabbar-icon4.png")}
           />
-          <Text style={styles.home}>Home</Text>
+          <Text style={styles.booking}>Booking</Text>
         </View>
       </View>
-      <TouchableOpacity style={[styles.tab, styles.tabFlexBox]} onPress={navigateBookingScreen}>
-        <Image
-          style={styles.tabbarIconLayout}
-          contentFit="cover"
-          source={require("../../assets/tabbar-icon1.png")}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.tab, styles.tabFlexBox]}>
+      <View style={[styles.tab, styles.tabFlexBox]}>
         <Image
           style={[styles.tabbarIcon, styles.tabbarIconLayout]}
           contentFit="cover"
           source={require("../../assets/tabbar-icon2.png")}
         />
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.tab, styles.tabFlexBox]}>
+      </View>
+      <View style={[styles.tab, styles.tabFlexBox]}>
         <Image
           style={[styles.tabbarIcon, styles.tabbarIconLayout]}
           contentFit="cover"
           source={require("../../assets/tabbar-icon5.png")}
         />
-      </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   tabFlexBox: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
@@ -62,7 +69,12 @@ const styles = StyleSheet.create({
   tabbarIcon: {
     overflow: "hidden",
   },
-  home: {
+  tab: {
+    padding: Padding.p_5xs,
+    flex: 1,
+    alignItems: "center",
+  },
+  booking: {
     fontSize: FontSize.bodyMRegular_size,
     lineHeight: 14,
     fontWeight: "600",
@@ -76,21 +88,17 @@ const styles = StyleSheet.create({
     backgroundColor: Color.peach50,
     paddingHorizontal: Padding.p_5xs,
     paddingVertical: Padding.p_11xs,
+    flex: 1,
+    alignItems: "center",
   },
   activeTab: {
     width: 150,
     paddingHorizontal: Padding.p_base,
     paddingVertical: Padding.p_7xs,
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  tab: {
-    padding: Padding.p_5xs,
   },
   tabbar: {
     position: "absolute",
-    top: 722,
+    top: 704,
     left: 0,
     shadowColor: "rgba(0, 0, 0, 0.05)",
     shadowOffset: {
@@ -110,4 +118,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Tabbar2;
+export default Tabbar1;
