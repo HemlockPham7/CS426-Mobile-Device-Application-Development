@@ -5,17 +5,17 @@ import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
 import { Border, FontSize, FontFamily, Color, Padding } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 
-const Onboarding1 = () => {
+const Onboarding = () => {
   const navigation = useNavigation<any>();
 
   function navigateSearchScreen() {
-    navigation.navigate("Onboarding");
+    navigation.navigate("WelcomeScreen");
   }
 
   return (
-    <View style={[styles.onboarding2, styles.onboarding2Layout]}>
+    <View style={styles.onboarding3}>
       <TypePrimaryLabelLabelSta
-        buttonText="Next"
+        buttonText="Let’s start!"
         typePrimaryLabelLabelStaPosition="absolute"
         typePrimaryLabelLabelStaTop={704}
         typePrimaryLabelLabelStaLeft={16}
@@ -31,9 +31,9 @@ const Onboarding1 = () => {
       />
       <View style={styles.illustration}>
         <Image
-          style={[styles.destinationrafikiIcon, styles.onboarding2Layout]}
+          style={styles.triprafikiIcon}
           contentFit="cover"
-          source={require("../../assets/destinationrafiki.png")}
+          source={require("../../assets/triprafiki.png")}
         />
         <Text style={styles.bookingTicketsFor}>
           Booking tickets for planes and trains
@@ -49,20 +49,15 @@ const Onboarding1 = () => {
 };
 
 const styles = StyleSheet.create({
-  onboarding2Layout: {
-    overflow: "hidden",
-    width: "100%",
-  },
   vectorLayout: {
     marginLeft: 5,
     height: 2,
     borderRadius: Border.br_11xs_5,
     flex: 1,
   },
-  destinationrafikiIcon: {
-    alignSelf: "stretch",
-    maxWidth: "100%",
-    height: 304,
+  triprafikiIcon: {
+    height: 300,
+    width: 343,
   },
   bookingTicketsFor: {
     fontSize: FontSize.headingH4_size,
@@ -76,8 +71,7 @@ const styles = StyleSheet.create({
   illustration: {
     top: 150,
     left: 0,
-    width: 375,
-    height: 388,
+    height: 387,
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: Padding.p_base,
@@ -91,26 +85,26 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   vector1: {
-    backgroundColor: Color.lightUIElementContrast,
-  },
-  vector2: {
     backgroundColor: Color.lightUIElementContrast30,
     marginLeft: 5,
+  },
+  vector2: {
+    backgroundColor: Color.lightUIElementContrast,
   },
   slider: {
     top: 68,
     left: 16,
-    width: 343,
     flexDirection: "row",
+    width: 343,
     position: "absolute",
   },
-  onboarding2: {
+  onboarding3: {
     backgroundColor: Color.lightBackgroundScreen,
-    height: 812,
-    flex: 1,
-    overflow: "hidden",
     width: "100%",
+    height: 812,
+    overflow: "hidden",
+    flex: 1,
   },
 });
 
-export default Onboarding1;
+export default Onboarding;
