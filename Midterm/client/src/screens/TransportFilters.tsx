@@ -1,27 +1,37 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import TypeArrow from "../components/TypeArrow";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
 import PriceBox from "../components/PriceBox";
 import Facility from "../components/Facility";
 import { Padding, Color, FontSize, FontFamily } from "../../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const TransportFilters = () => {
+  const navigation = useNavigation<any>();
+
+  function navigateTransportFlightsScreen() {
+    navigation.navigate("TransportFlights");
+  }
+
   return (
     <View style={styles.transportFilters}>
-      <TypeArrow
-        title="Filters"
-        typeArrowPosition="absolute"
-        typeArrowTop={44}
-        typeArrowLeft={0}
-      />
+      <TouchableOpacity style={styles.typearrow} onPress={navigateTransportFlightsScreen}>
+        <Image
+          style={styles.chevronIcon}
+          contentFit="cover"
+          source={require("../../assets/chevron.png")}
+        />
+        <Text style={styles.title}>Filters</Text>
+      </TouchableOpacity>
+
       <View style={[styles.filters, styles.filtersSpaceBlock]}>
         <View>
           <Text style={[styles.departure1, styles.departure1Typo]}>
             Departure
           </Text>
-          <View style={styles.departure2}>
+          <ScrollView horizontal={true} style={styles.departure2}>
             <TypePrimaryLabelLabelSta
               buttonText="12AM - 06AM"
               typePrimaryLabelLabelStaPosition="unset"
@@ -82,13 +92,13 @@ const TransportFilters = () => {
               typePrimaryLabelLabelStaMarginLeft={8}
               typePrimaryLabelLabelStaTextColor="#089083"
             />
-          </View>
+          </ScrollView>
         </View>
         <View style={styles.arrival}>
           <Text style={[styles.departure1, styles.departure1Typo]}>
             Arrival
           </Text>
-          <View style={styles.departure2}>
+          <ScrollView horizontal={true} style={styles.departure2}>
             <TypePrimaryLabelLabelSta
               buttonText="12AM - 06AM"
               typePrimaryLabelLabelStaPosition="unset"
@@ -149,13 +159,16 @@ const TransportFilters = () => {
               typePrimaryLabelLabelStaMarginLeft={8}
               typePrimaryLabelLabelStaTextColor="#089083"
             />
-          </View>
+          </ScrollView>
         </View>
+
         <PriceBox />
+
         <View style={styles.arrival}>
           <Text style={[styles.departure1, styles.departure1Typo]}>
             Sort by
           </Text>
+
           <View style={styles.radio}>
             <View style={styles.radio1}>
               <Image
@@ -167,6 +180,7 @@ const TransportFilters = () => {
                 Arrival time
               </Text>
             </View>
+
             <View style={styles.radio2}>
               <Image
                 style={styles.radiobuttonIcon}
@@ -177,6 +191,7 @@ const TransportFilters = () => {
                 Departure time
               </Text>
             </View>
+
             <View style={styles.radio2}>
               <Image
                 style={styles.radiobuttonIcon}
@@ -187,6 +202,7 @@ const TransportFilters = () => {
                 Price
               </Text>
             </View>
+
             <View style={styles.radio2}>
               <Image
                 style={styles.radiobuttonIcon}
@@ -197,6 +213,7 @@ const TransportFilters = () => {
                 Lowest fare
               </Text>
             </View>
+
             <View style={styles.radio2}>
               <Image
                 style={styles.radiobuttonIcon}
@@ -307,6 +324,31 @@ const styles = StyleSheet.create({
     height: 812,
     overflow: "hidden",
     backgroundColor: Color.lightBackgroundScreen,
+  },
+  title: {
+    flex: 1,
+    fontSize: FontSize.headingH4_size,
+    lineHeight: 26,
+    fontWeight: "600",
+    fontFamily: FontFamily.headingH4,
+    color: Color.lightUIElementContrast,
+    textAlign: "center",
+  },
+  chevronIcon: {
+    width: 24,
+    height: 24,
+    overflow: "hidden",
+  },
+  typearrow: {
+    width: 375,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: Padding.p_base,
+    paddingTop: Padding.p_5xs,
+    paddingRight: Padding.p_21xl,
+    top: 44,
+    left: 0,
+    position: "absolute",
   },
 });
 
