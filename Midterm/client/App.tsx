@@ -8,6 +8,8 @@ import Screen1 from './src/screens/Screen1';
 import Screen2 from './src/screens/Screen2';
 import Onboarding2 from './src/screens/Onboarding2';
 import Onboarding1 from './src/screens/Onboarding1';
+import Onboarding from './src/screens/Onboarding';
+import WelcomeScreen from './src/screens/WelcomeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +25,16 @@ export default function App() {
         <Stack.Screen
           name="Onboarding1"
           component={Onboarding1}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Onboarding"
+          component={Onboarding}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="WelcomeScreen"
+          component={WelcomeScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
