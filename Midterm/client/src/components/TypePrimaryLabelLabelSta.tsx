@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import { FontSize, FontFamily, Color, Border, Padding } from "../../GlobalStyles";
 
 export type TypePrimaryLabelLabelStaType = {
@@ -81,11 +81,12 @@ const TypePrimaryLabelLabelSta = ({
   ]);
 
   return (
-    <View
+    <TouchableOpacity
+      onPress={onPress}
       style={[styles.typeprimaryLabellabelSta, typePrimaryLabelLabelStaStyle]}
     >
-      <Text style={styles.button} onPress={onPress}>{buttonText}</Text>
-    </View>
+      <Text style={styles.button} >{buttonText}</Text>
+    </TouchableOpacity>
   );
 };
 
