@@ -3,8 +3,15 @@ import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import TypePrimaryLabelIconStat from "./TypePrimaryLabelIconStat";
 import { Color, FontFamily, FontSize } from "../../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const Facility1 = () => {
+  const navigation = useNavigation<any>();
+
+  function navigateTransportBookingScreen() {
+    navigation.navigate("TransportBooking");
+  }
+  
   return (
     <View>
       <Text style={[styles.bookingServices, styles.tripsTypo]}>
@@ -24,6 +31,7 @@ const Facility1 = () => {
           />
           <Text style={[styles.trips, styles.tripsTypo]}>Trips</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.service}>
           <TypePrimaryLabelIconStat
             chevron={require("../../assets/category-icon1.png")}
@@ -37,7 +45,8 @@ const Facility1 = () => {
           />
           <Text style={[styles.trips, styles.tripsTypo]}>Hotel</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.service}>
+
+        <TouchableOpacity style={styles.service} onPress={navigateTransportBookingScreen}>
           <TypePrimaryLabelIconStat
             chevron={require("../../assets/category-icon2.png")}
             typePrimaryLabelIconStatPosition="unset"
@@ -50,6 +59,7 @@ const Facility1 = () => {
           />
           <Text style={[styles.trips, styles.tripsTypo]}>Transport</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.service}>
           <TypePrimaryLabelIconStat
             chevron={require("../../assets/category-icon3.png")}

@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import { Text, StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
+import React, { useMemo, useState } from "react";
+import { Text, StyleSheet, View, TextInput, TouchableOpacity, Alert } from "react-native";
 import { Image } from "expo-image";
 import { FontSize, FontFamily, Color, Border, Padding } from "../../GlobalStyles";
 
@@ -14,11 +14,14 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
   if (value === undefined) return;
   return { [key]: value === "unset" ? undefined : value };
 };
+
 const SearchField = ({
   searchFieldPosition,
   searchFieldTop,
   searchFieldLeft,
 }: SearchFieldType) => {
+  const [searchText, setSearchText] = useState("");
+
   const searchFieldStyle = useMemo(() => {
     return {
       ...getStyleValue("position", searchFieldPosition),
@@ -27,13 +30,20 @@ const SearchField = ({
     };
   }, [searchFieldPosition, searchFieldTop, searchFieldLeft]);
 
+  const handleSearch = () => {
+    Alert.alert("Search Text: ", searchText);
+    setSearchText("");
+  };
+
   return (
     <View style={[styles.searchField, styles.searchFlexBox, searchFieldStyle]}>
       <TextInput 
         style={styles.search} 
         placeholder="Search"
+        value={searchText}
+        onChangeText={setSearchText}
       />
-      <TouchableOpacity style={[styles.search1, styles.searchFlexBox]}>
+      <TouchableOpacity style={[styles.search1, styles.searchFlexBox]} onPress={handleSearch}>
         <Image
           style={styles.systemIcon}
           contentFit="cover"
