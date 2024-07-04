@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, Alert } from "react-native";
 import { Image } from "expo-image";
 import Tabbar from "../components/Tabbar";
 import TypeLabel from "../components/TypeLabel";
@@ -17,6 +17,10 @@ const Account = () => {
   function navigateWelcomeScreen() {
     navigation.navigate("WelcomeScreen");
   }
+  
+  const handleUpdatedInFuture = () => {
+    Alert.alert("This function will be developed soon");
+  };
 
   return (
     <View style={styles.account}>
@@ -43,7 +47,7 @@ const Account = () => {
           <Text style={styles.personalInformation}>Personal information</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]}>
+        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]} onPress={handleUpdatedInFuture}>
           <Image
             style={[styles.accountIcon, styles.accountIconLayout]}
             contentFit="cover"
@@ -52,7 +56,7 @@ const Account = () => {
           <Text style={styles.personalInformation}>Payment and cards</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]}>
+        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]} onPress={handleUpdatedInFuture}>
           <Image
             style={styles.accountIconLayout}
             contentFit="cover"
@@ -61,7 +65,7 @@ const Account = () => {
           <Text style={styles.personalInformation}>Saved</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]}>
+        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]} onPress={handleUpdatedInFuture}>
           <Image
             style={[styles.accountIcon, styles.accountIconLayout]}
             contentFit="cover"
@@ -70,7 +74,7 @@ const Account = () => {
           <Text style={styles.personalInformation}>Booking history</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]}>
+        <TouchableOpacity style={[styles.item1, styles.itemFlexBox]} onPress={handleUpdatedInFuture}>
           <Image
             style={[styles.accountIcon, styles.accountIconLayout]}
             contentFit="cover"
