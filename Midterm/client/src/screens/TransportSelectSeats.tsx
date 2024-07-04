@@ -9,8 +9,8 @@ import { useNavigation } from "@react-navigation/native";
 const TransportSelectSeats = () => {
   const navigation = useNavigation<any>();
 
-  function navigateTransportFiltersScreen() {
-    navigation.navigate("TransportFilters");
+  function navigateTransportFlightsScreen() {
+    navigation.navigate("TransportFlights");
   }
 
   function navigateTransportBoardingPassScreen() {
@@ -101,13 +101,13 @@ const TransportSelectSeats = () => {
         />
       </View>
 
-      <TouchableOpacity style={styles.typearrow} onPress={navigateTransportFiltersScreen}>
+      <TouchableOpacity style={styles.typearrow} onPress={navigateTransportFlightsScreen}>
         <Image
           style={styles.chevronIcon}
           contentFit="cover"
           source={require("../../assets/chevron.png")}
         />
-        <Text style={styles.title}>Seect Seats</Text>
+        <Text style={styles.title}>Select Seats</Text>
       </TouchableOpacity>
     </View>
   );

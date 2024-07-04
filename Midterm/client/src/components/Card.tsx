@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
 import { Image } from "expo-image";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FontSize, FontFamily, Color } from "../../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 export type CardType = {
   /** Style props */
@@ -12,6 +13,7 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
   if (value === undefined) return;
   return { [key]: value === "unset" ? undefined : value };
 };
+
 const Card = ({ propMarginTop }: CardType) => {
   const cardStyle = useMemo(() => {
     return {
@@ -19,8 +21,14 @@ const Card = ({ propMarginTop }: CardType) => {
     };
   }, [propMarginTop]);
 
+  const navigation = useNavigation<any>();
+
+  function navigateTransportSelectSeatsScreen() {
+    navigation.navigate("TransportSelectSeats");
+  }
+
   return (
-    <View style={[styles.card, cardStyle]}>
+    <TouchableOpacity style={[styles.card, cardStyle]} onPress={navigateTransportSelectSeatsScreen}>
       <Image
         style={styles.card}
         contentFit="cover"
@@ -75,7 +83,7 @@ const Card = ({ propMarginTop }: CardType) => {
         </View>
       </View>
       <View style={[styles.divider, styles.dividerBorder]} />
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -261,7 +261,7 @@ const TransportFilters = () => {
           typePrimaryLabelLabelStaMarginLeft={16}
           typePrimaryLabelLabelStaFlex={1}
           typePrimaryLabelLabelStaTextColor="#fff"
-          onPress={navigateTransportSelectSeatsScreen}
+          onPress={navigateTransportFlightsScreen}
         />
       </View>
     </View>

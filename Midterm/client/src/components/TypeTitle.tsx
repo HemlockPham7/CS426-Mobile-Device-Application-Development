@@ -5,6 +5,7 @@ import { FontFamily, FontSize, Color, Border, Padding } from "../../GlobalStyles
 export type TypeTitleType = {
   name1?: string;
   text?: string;
+  onChangeText?: (text: string) => void;
 
   /** Style props */
   typeTitlePosition?: string;
@@ -21,6 +22,7 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
 const TypeTitle = ({
   name1,
   text,
+  onChangeText,
   typeTitlePosition,
   typeTitleMarginTop,
   typeTitleWidth,
@@ -48,7 +50,8 @@ const TypeTitle = ({
       <Text style={[styles.name, styles.nameTypo]}>{name1}</Text>
       <TextInput 
         style={[styles.text, styles.nameTypo]}
-        placeholder={text}
+        value={text}
+        onChangeText={onChangeText}
       />
     </View>
   );

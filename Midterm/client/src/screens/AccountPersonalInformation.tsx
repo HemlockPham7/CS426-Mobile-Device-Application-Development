@@ -14,9 +14,20 @@ const AccountPersonalInformation = () => {
     navigation.navigate("Account");
   }
 
+  const [avatar, setAvatar] = React.useState(require("../../assets/avatar.png"));
+  const [firstName, setFirstName] = React.useState("Victoriaaaa");
+  const [lastName, setLastName] = React.useState("Yoker");
+  const [phone, setPhone] = React.useState("+380 12 345 67 89");
+  const [email, setEmail] = React.useState("victoria.yoker@gmail.com");
+
+  const handleSaveChanges = () => {
+
+  };
+
   return (
     <View style={styles.accountPersonalInformation}>
       <Tabbar />
+
       <TouchableOpacity style={styles.typearrow} onPress={navigateAccountScreen}>
         <Image
           style={styles.chevronIcon}
@@ -25,10 +36,12 @@ const AccountPersonalInformation = () => {
         />
         <Text style={styles.title}>Personal Information</Text>
       </TouchableOpacity>
+
       <View style={styles.accountItem}>
         <TypeTitle
           name1="First Name"
-          text="Victoria"
+          text={firstName}
+          onChangeText={setFirstName}
           typeTitlePosition="unset"
           typeTitleMarginTop="unset"
           typeTitleWidth={343}
@@ -36,7 +49,8 @@ const AccountPersonalInformation = () => {
         />
         <TypeTitle
           name1="Last Name"
-          text="Yoker"
+          text={lastName}
+          onChangeText={setLastName}
           typeTitlePosition="unset"
           typeTitleMarginTop={16}
           typeTitleWidth={343}
@@ -44,7 +58,8 @@ const AccountPersonalInformation = () => {
         />
         <TypeTitle
           name1="Phone"
-          text="+380 12 345 67 89 "
+          text={phone}
+          onChangeText={setPhone}
           typeTitlePosition="unset"
           typeTitleMarginTop={16}
           typeTitleWidth={343}
@@ -52,13 +67,15 @@ const AccountPersonalInformation = () => {
         />
         <TypeTitle
           name1="Email"
-          text="victoria.yoker@gmail.com"
+          text={email}
+          onChangeText={setEmail}
           typeTitlePosition="unset"
           typeTitleMarginTop={16}
           typeTitleWidth={343}
           typeTitleMarginLeft="unset"
         />
       </View>
+
       <TypePrimaryLabelLabelSta
         buttonText="Save changes"
         typePrimaryLabelLabelStaPosition="absolute"
@@ -73,20 +90,23 @@ const AccountPersonalInformation = () => {
         typePrimaryLabelLabelStaPaddingVertical="unset"
         typePrimaryLabelLabelStaMarginLeft="unset"
         typePrimaryLabelLabelStaTextColor="#fff"
+        onPress={handleSaveChanges}
       />
+
       <View style={[styles.avatar, styles.avatarLayout]}>
         <Image
           style={[styles.avatarIcon, styles.avatarLayout]}
           contentFit="cover"
-          source={require("../../assets/avatar.png")}
+          source={avatar}
         />
-        <View style={styles.photo}>
+
+        <TouchableOpacity style={styles.photo}>
           <Image
             style={styles.systemIcon}
             contentFit="cover"
             source={require("../../assets/system.png")}
           />
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
