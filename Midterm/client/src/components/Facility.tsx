@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Text, StyleSheet, View, ImageSourcePropType } from "react-native";
+import { Text, StyleSheet, View, ImageSourcePropType, TouchableOpacity, Alert } from "react-native";
 import { Image } from "expo-image";
 import TypePrimaryLabelIconStat from "./TypePrimaryLabelIconStat";
-import { FontSize, FontFamily, Color } from "../../GlobalStyles";
+import { FontSize, FontFamily, Color, Border, Padding } from "../../GlobalStyles";
 
 export type FacilityType = {
   facilities?: string;
@@ -21,51 +21,41 @@ const Facility = ({
   convenience3,
   facility,
 }: FacilityType) => {
+  function handlerAlert() {
+    Alert.alert("This function will be developed soon");
+  }
+
   return (
     facility && (
       <View style={styles.facility}>
         <Text style={styles.facilities}>Transport</Text>
         <View style={styles.facility1}>
-          <TypePrimaryLabelIconStat
-            chevron={require("../../assets/transport.png")}
-            typePrimaryLabelIconStatPosition="unset"
-            typePrimaryLabelIconStatBackgroundColor="#089083"
-            typePrimaryLabelIconStatBorderRadius={15}
-            typePrimaryLabelIconStatWidth={60}
-            typePrimaryLabelIconStatHeight={60}
-            typePrimaryLabelIconStatPadding={9}
-            typePrimaryLabelIconStatMarginLeft="unset"
-          />
-          <TypePrimaryLabelIconStat
-            chevron={require("../../assets/transport1.png")}
-            typePrimaryLabelIconStatPosition="unset"
-            typePrimaryLabelIconStatBackgroundColor="#fff"
-            typePrimaryLabelIconStatBorderRadius={15}
-            typePrimaryLabelIconStatWidth={60}
-            typePrimaryLabelIconStatHeight={60}
-            typePrimaryLabelIconStatPadding={9}
-            typePrimaryLabelIconStatMarginLeft={16}
-          />
-          <TypePrimaryLabelIconStat
-            chevron={require("../../assets/transport2.png")}
-            typePrimaryLabelIconStatPosition="unset"
-            typePrimaryLabelIconStatBackgroundColor="#fff"
-            typePrimaryLabelIconStatBorderRadius={15}
-            typePrimaryLabelIconStatWidth={60}
-            typePrimaryLabelIconStatHeight={60}
-            typePrimaryLabelIconStatPadding={9}
-            typePrimaryLabelIconStatMarginLeft={16}
-          />
-          <TypePrimaryLabelIconStat
-            chevron={require("../../assets/transport3.png")}
-            typePrimaryLabelIconStatPosition="unset"
-            typePrimaryLabelIconStatBackgroundColor="#fff"
-            typePrimaryLabelIconStatBorderRadius={15}
-            typePrimaryLabelIconStatWidth={60}
-            typePrimaryLabelIconStatHeight={60}
-            typePrimaryLabelIconStatPadding={9}
-            typePrimaryLabelIconStatMarginLeft={16}
-          />
+          <TouchableOpacity
+            style={[styles.typeprimaryLabeliconStat, {backgroundColor: "#089083"}]}
+          >
+            <Image style={styles.chevronIcon} contentFit="cover" source={require("../../assets/transport.png")} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.typeprimaryLabeliconStat, {backgroundColor: "#fff", marginLeft: 16}]}
+            onPress={handlerAlert}
+          >
+            <Image style={styles.chevronIcon} contentFit="cover" source={require("../../assets/transport1.png")} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.typeprimaryLabeliconStat, {backgroundColor: "#fff", marginLeft: 16}]}
+            onPress={handlerAlert}
+          >
+            <Image style={styles.chevronIcon} contentFit="cover" source={require("../../assets/transport2.png")} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.typeprimaryLabeliconStat, {backgroundColor: "#fff", marginLeft: 16}]}
+            onPress={handlerAlert}
+          >
+            <Image style={styles.chevronIcon} contentFit="cover" source={require("../../assets/transport3.png")} />
+          </TouchableOpacity>
         </View>
       </View>
     )
@@ -88,6 +78,24 @@ const styles = StyleSheet.create({
   },
   facility: {
     marginTop: 32,
+  },
+  chevronIcon: {
+    alignSelf: "stretch",
+    flex: 1,
+    maxWidth: "100%",
+    overflow: "hidden",
+    maxHeight: "100%",
+    width: "100%",
+  },
+  typeprimaryLabeliconStat: {
+    borderRadius: 15,
+    backgroundColor: Color.peach300,
+    width: 60,
+    height: 60,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 9,
   },
 });
 
