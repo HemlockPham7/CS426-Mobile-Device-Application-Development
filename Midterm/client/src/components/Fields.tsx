@@ -1,32 +1,46 @@
 import * as React from "react";
-import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity, Modal, ScrollView } from "react-native";
 import { Image } from "expo-image";
 import TypeTitle from "./TypeTitle";
-import { Border, Color, Padding } from "../../GlobalStyles";
+import { Border, Color, FontFamily, FontSize, Padding } from "../../GlobalStyles";
+import { useAppSelector } from "../reduxstore/hooks";
 
 const Fields = () => {
+  const [openModal1, setOpenModal1] = React.useState(false);
+  const [openModal2, setOpenModal2] = React.useState(false);
+  const [openModal3, setOpenModal3] = React.useState(false);
+  const [openModal4, setOpenModal4] = React.useState(false);
+  
+  
+  const fromDestination = useAppSelector((state) => state.ticket.fromDestination);
+  const toDestination = useAppSelector((state) => state.ticket.toDestination);
+
+  const [fromDes, setFromDes] = React.useState(fromDestination);
+  const [toDes, setToDes] = React.useState(toDestination);
+
+  function handlerSwapping() {
+    const tempFromDes = fromDes;
+    const tempToDes = toDes;
+    setFromDes(tempToDes);
+    setToDes(tempFromDes);
+  }
+
   return (
     <View>
       <View style={styles.fields1}>
         <View style={styles.fields2}>
-          <TypeTitle
-            name1="From"
-            text="New York (NYC)"
-            typeTitlePosition="unset"
-            typeTitleMarginTop="unset"
-            typeTitleWidth={343}
-            typeTitleMarginLeft="unset"
-          />
-          <TypeTitle
-            name1="To"
-            text="London (LDN)"
-            typeTitlePosition="unset"
-            typeTitleMarginTop={8}
-            typeTitleWidth={343}
-            typeTitleMarginLeft="unset"
-          />
+          <TouchableOpacity style={[styles.typetitle, {width: 343}]} onPress={() => setOpenModal1(true)}>
+            <Text style={[styles.name, styles.nameTypo]}>From</Text>
+            <Text style={[styles.text, styles.nameTypo]}>{fromDes}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={[styles.typetitle, {width: 343, marginTop: 8}]} onPress={() => setOpenModal2(true)}>
+            <Text style={[styles.name, styles.nameTypo]}>To</Text>
+            <Text style={[styles.text, styles.nameTypo]}>{toDes}</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.button}>
+
+        <TouchableOpacity style={styles.button} onPress={handlerSwapping}>
           <Image
             style={styles.arrowsIcon}
             contentFit="cover"
@@ -34,26 +48,96 @@ const Fields = () => {
           />
         </TouchableOpacity>
       </View>
+
       <View style={styles.fields3}>
-        <TypeTitle
-          name1="Departure"
-          text="Jun 02, 2022"
-          typeTitlePosition="unset"
-          typeTitleMarginTop="unset"
-          typeTitleWidth="unset"
-          typeTitleFlex={1}
-          typeTitleMarginLeft="unset"
-        />
-        <TypeTitle
-          name1="Return"
-          text="Jun 12, 2022"
-          typeTitlePosition="unset"
-          typeTitleMarginTop="unset"
-          typeTitleWidth="unset"
-          typeTitleFlex={1}
-          typeTitleMarginLeft={16}
-        />
+        <TouchableOpacity style={[styles.typetitle, {flex: 1}]} onPress={() => setOpenModal3(true)}>
+          <Text style={[styles.name, styles.nameTypo]}>Departure</Text>
+          <Text style={[styles.text, styles.nameTypo]}>Jun 02, 2022</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.typetitle, {flex: 1, marginLeft: 16}]} onPress={() => setOpenModal4(true)}>
+          <Text style={[styles.name, styles.nameTypo]}>Return</Text>
+          <Text style={[styles.text, styles.nameTypo]}>Jun 12, 2022</Text>
+        </TouchableOpacity>
       </View>
+
+      <Modal visible={openModal1} animationType="slide" transparent={true}>
+        <View style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <View style={{backgroundColor: "white", padding: 15, width: '95%', height: 300, borderRadius: 10}}>
+            <ScrollView>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("New York (NYC)")}}>
+                <Text style={styles.textmodal}>New York (NYC)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Los Angeles (LA)")}}>
+                <Text style={styles.textmodal}>Los Angeles (LA)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Chicago (CHI)")}}>
+                <Text style={styles.textmodal}>Chicago (CHI)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Houston (HOU))")}}>
+                <Text style={styles.textmodal}>Houston (HOU)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Dallas (DAL)")}}>
+                <Text style={styles.textmodal}>Dallas (DAL)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("San Jose (SJC)")}}>
+                <Text style={styles.textmodal}>San Jose (SJC)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Memphis (MEM)")}}>
+                <Text style={styles.textmodal}>Memphis (MEM)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("San Diego (SAN)")}}>
+                <Text style={styles.textmodal}>San Diego (SAN)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("San Francisco (SFO)")}}>
+                <Text style={styles.textmodal}>San Francisco (SFO)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Denver (DEN)")}}>
+                <Text style={styles.textmodal}>Denver (DEN)</Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal visible={openModal2} animationType="slide" transparent={true}>
+        <View style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <View style={{backgroundColor: "white", padding: 15, width: '95%', height: 300, borderRadius: 10}}>
+            <ScrollView>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("New York (NYC)")}}>
+                <Text style={styles.textmodal}>New York (NYC)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Los Angeles (LA)")}}>
+                <Text style={styles.textmodal}>Los Angeles (LA)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Chicago (CHI)")}}>
+                <Text style={styles.textmodal}>Chicago (CHI)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Houston (HOU))")}}>
+                <Text style={styles.textmodal}>Houston (HOU)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Dallas (DAL)")}}>
+                <Text style={styles.textmodal}>Dallas (DAL)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("San Jose (SJC)")}}>
+                <Text style={styles.textmodal}>San Jose (SJC)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Memphis (MEM)")}}>
+                <Text style={styles.textmodal}>Memphis (MEM)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("San Diego (SAN)")}}>
+                <Text style={styles.textmodal}>San Diego (SAN)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("San Francisco (SFO)")}}>
+                <Text style={styles.textmodal}>San Francisco (SFO)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Denver (DEN)")}}>
+                <Text style={styles.textmodal}>Denver (DEN)</Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -91,6 +175,48 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: 343,
   },
+  nameTypo: {
+    textAlign: "left",
+    fontFamily: FontFamily.bodyMRegular,
+  },
+  name: {
+    fontSize: FontSize.bodySMedium_size,
+    lineHeight: 16,
+    color: Color.lightTextSecondary,
+  },
+  text: {
+    fontSize: FontSize.bodyXLRegular_size,
+    lineHeight: 22,
+    color: Color.lightUIElementContrast,
+    marginTop: 4,
+  },
+  typetitle: {
+    borderRadius: Border.br_mini,
+    backgroundColor: Color.lightTextWhite,
+    height: 54,
+    paddingHorizontal: Padding.p_base,
+    paddingTop: Padding.p_9xs,
+    paddingBottom: Padding.p_base,
+  },
+  textmodal: {
+    textAlign: "left",
+    fontFamily: FontFamily.bodyMRegular,
+    fontSize: FontSize.bodyXLRegular_size,
+    lineHeight: 22,
+    color: Color.lightUIElementContrast,
+    marginTop: 4,
+  },
+  choosingmodal: {
+    borderRadius: Border.br_mini,
+    backgroundColor: Color.lightTextWhite,
+    height: 54,
+    paddingHorizontal: Padding.p_base,
+    paddingTop: Padding.p_9xs,
+    paddingBottom: Padding.p_base,
+    width: 320, 
+    borderWidth: 1,
+    marginTop: 8,
+  }
 });
 
 export default Fields;

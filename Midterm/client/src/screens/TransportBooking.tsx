@@ -32,8 +32,10 @@ const TransportBooking = () => {
       
       <View style={styles.content}>
         <Fields />
+        
         <View style={styles.passengerLuggage}>
           <Text style={styles.passengerLuggage1}>{`Passenger & Luggage`}</Text>
+
           <View style={styles.transportSpaceBlock}>
             <View>
               <View style={styles.icon}>
@@ -46,6 +48,7 @@ const TransportBooking = () => {
               </View>
               <View style={[styles.line, styles.lineLayout]} />
             </View>
+
             <View style={styles.passenger1}>
               <Image
                 style={styles.component2IconLayout}
@@ -54,6 +57,7 @@ const TransportBooking = () => {
               />
               <View style={[styles.line1, styles.lineLayout]} />
             </View>
+
             <View style={styles.passenger1}>
               <Image
                 style={styles.component2IconLayout}
@@ -62,6 +66,7 @@ const TransportBooking = () => {
               />
               <View style={[styles.line1, styles.lineLayout]} />
             </View>
+
             <View style={styles.passenger1}>
               <Image
                 style={[styles.component2Icon, styles.component2IconLayout]}
@@ -72,6 +77,7 @@ const TransportBooking = () => {
             </View>
           </View>
         </View>
+
         <View style={styles.passengerLuggage}>
           <Text style={styles.passengerLuggage1}>Class</Text>
           <View style={[styles.transport, styles.transportSpaceBlock]}>

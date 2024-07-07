@@ -6,7 +6,6 @@ import TypeLabel from "../components/TypeLabel";
 import TypeSecondaryLabelLabel from "../components/TypeSecondaryLabelLabel";
 import { Border, FontSize, FontFamily, Color } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
-import { useQueryClient } from "@tanstack/react-query";
 import { signOut } from "firebase/auth";
 import { auth } from "../api/firebaseConfig/firebase";
 import { useAppSelector } from "../reduxstore/hooks";

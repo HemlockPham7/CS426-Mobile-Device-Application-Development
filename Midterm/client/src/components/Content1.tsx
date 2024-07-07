@@ -7,12 +7,16 @@ import TypePrimaryLabelLabelSta from "./TypePrimaryLabelLabelSta";
 import { Border, Color, FontFamily, FontSize, Padding } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 import { signIn } from "../api/authentication/auth";
+import { getUserDatabase } from "../api/userData/informationUser";
+import { useAppDispatch } from "../reduxstore/hooks";
+import { updateEmail, updateFirstName, updateImage, updateIntroduction, updateLastName } from "../reduxstore/informationSlice";
 
 const Content1 = () => {
   const [enteredEmail, setEnteredEmail] = React.useState("");
   const [enteredPassword, setEnteredPassword] = React.useState("");
 
   const navigation = useNavigation<any>();
+  const dispatch = useAppDispatch();
 
   function navigateSignUpScreen() {
     navigation.navigate("SignUpMail");
@@ -41,10 +45,22 @@ const Content1 = () => {
     logInUser(email, password);
   }
 
+  async function test() {
+    const dataInformationUser = await getUserDatabase();
+    dispatch(
+      updateIntroduction({ introduction: dataInformationUser.introduction })
+    );
+    // dispatch(updateImage({ urlImage: dataInformationUser.urlImage }));
+    dispatch(updateEmail({ email: dataInformationUser.email }));
+    dispatch(updateFirstName({ firstName: dataInformationUser.firstName }));
+    dispatch(updateLastName({ lastName: dataInformationUser.lastName }));
+    console.log(dataInformationUser);
+  }
+
   async function logInUser(email: string, password: string) {
     try {
       await signIn(email, password);
-      
+      await test();
       navigation.navigate("Home");
     } catch (err) {
       console.log(err);
