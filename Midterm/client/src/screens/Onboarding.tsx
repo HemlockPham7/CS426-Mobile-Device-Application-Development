@@ -4,12 +4,37 @@ import { Image } from "expo-image";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
 import { Border, FontSize, FontFamily, Color, Padding } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
+import { useAppDispatch, useAppSelector } from "../reduxstore/hooks";
+import { onAuthStateChanged } from "firebase/auth";
+import { clearInformation, updateUid } from "../reduxstore/informationSlice";
+import { auth } from "../api/firebaseConfig/firebase";
 
 const Onboarding = () => {
+  const uid = useAppSelector((state) => state.information.uid);
+  console.log("uid now: ", uid);
+  const dispatch = useAppDispatch();
+
   const navigation = useNavigation<any>();
 
+  React.useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        dispatch(updateUid({ uid: user.uid }));
+        
+      } else {
+        dispatch(clearInformation());
+        console.log("No user yet");
+      }
+    });
+  }, [uid]);
+
   function navigateSearchScreen() {
-    navigation.navigate("WelcomeScreen");
+    if (uid) {
+      navigation.navigate("Home");
+    }
+    else {
+      navigation.navigate("WelcomeScreen");
+    }
   }
 
   return (

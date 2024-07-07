@@ -6,50 +6,53 @@ import TypePassword from "./TypePassword";
 import TypePrimaryLabelLabelSta from "./TypePrimaryLabelLabelSta";
 import { Border, Color, FontFamily, FontSize, Padding } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
-import { signIn } from "../api/authentication/auth";
 
-const Content1 = () => {
-  const [enteredEmail, setEnteredEmail] = React.useState("");
-  const [enteredPassword, setEnteredPassword] = React.useState("");
-
+const Content3 = () => {
   const navigation = useNavigation<any>();
 
-  function navigateSignUpScreen() {
-    navigation.navigate("SignUpMail");
+  function navigateSignInScreen() {
+    navigation.navigate("SignInMail");
   }
+
+  const [enteredEmail, setEnteredEmail] = React.useState("");
+  const [enteredPassword, setEnteredPassword] = React.useState("");
+  const [enteredConfirmPassword, setEnteredConfirmPassword] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
 
   function submitHandler() {
     let email = enteredEmail;
     let password = enteredPassword;
+    let confirmPassword = enteredConfirmPassword;
 
     email.trim();
     password.trim();
+    confirmPassword.trim();
 
     const regexp = new RegExp(
       "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
     );
     const isValidEmail = regexp.test(email);
     const isValidPassword = password.length > 6;
+    const isConfirmPassword = password == confirmPassword;
 
     if (!isValidEmail) {
-      Alert.alert("LOGIN FAILED", "Please enter a valid email");
+      Alert.alert("SIGN UP FAILED", "Please enter a valid email");
       return;
     } else if (!isValidPassword) {
-      Alert.alert("LOGIN FAILED", "Please enter a long password");
+      Alert.alert("SIGN UP FAILED", "Please enter a long password");
+      return;
+    } else if (!isConfirmPassword) {
+      Alert.alert("SIGN UP FAILED", "Please confirm again your password");
       return;
     }
-    logInUser(email, password);
+    navigateAccountSettingScreen(email, password);
   }
-
-  async function logInUser(email: string, password: string) {
-    try {
-      await signIn(email, password);
-      
-      navigation.navigate("Home");
-    } catch (err) {
-      console.log(err);
-      Alert.alert("LOGIN FAILED", "Please login again");
-    }
+  
+  function navigateAccountSettingScreen(email: string, password: string) {
+    navigation.navigate("AccountSetting", {
+      email: email,
+      password: password,
+    });
   }
 
   return (
@@ -58,10 +61,9 @@ const Content1 = () => {
         <Text style={[styles.welcomeBack, styles.newFlexBox]}>
           Welcome back!
         </Text>
-        <Text style={styles.signInAnd}>Sign in and let’s get going</Text>
+        <Text style={styles.signInAnd}>Sign up and let’s get going</Text>
       </View>
       <View style={styles.phoneField}>
-
         <View>
           <View style={styles.typetext}>
             <TextInput 
@@ -79,11 +81,20 @@ const Content1 = () => {
             />
             <Image style={styles.passwordIcon} contentFit="cover" source={require("../../assets/password.png")} />
           </View>
-        </View>
 
+          <View style={styles.typepassword}>
+            <TextInput 
+              style={styles.nameTypePassword} 
+              placeholder="Confirm Password"
+              onChangeText={(text: any) => setEnteredConfirmPassword(text)}
+            />
+            <Image style={styles.passwordIcon} contentFit="cover" source={require("../../assets/password.png")} />
+          </View>
+
+        </View>
         <View style={styles.button}>
           <TypePrimaryLabelLabelSta
-            buttonText="Sign In"
+            buttonText="Sign Up"
             typePrimaryLabelLabelStaPosition="unset"
             typePrimaryLabelLabelStaTop="unset"
             typePrimaryLabelLabelStaLeft="unset"
@@ -99,11 +110,11 @@ const Content1 = () => {
             onPress={submitHandler}
           />
           <View style={[styles.text1, styles.text1FlexBox]}>
-            <TouchableOpacity style={styles.text1FlexBox} onPress={navigateSignUpScreen}>
-              <Text style={[styles.signUp, styles.signUpTypo]}>Sign Up</Text>
+            <TouchableOpacity style={styles.text1FlexBox} onPress={navigateSignInScreen}>
+              <Text style={[styles.signUp, styles.signUpTypo]}>Sign In</Text>
             </TouchableOpacity>
             <Text style={[styles.forgotPassword, styles.signUpTypo]}>
-              Forgot password?
+              Aready have an account!
             </Text>
           </View>
         </View>
@@ -224,4 +235,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Content1;
+export default Content3;

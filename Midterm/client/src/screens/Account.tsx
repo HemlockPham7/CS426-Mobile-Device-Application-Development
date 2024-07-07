@@ -6,12 +6,31 @@ import TypeLabel from "../components/TypeLabel";
 import TypeSecondaryLabelLabel from "../components/TypeSecondaryLabelLabel";
 import { Border, FontSize, FontFamily, Color } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
+import { useQueryClient } from "@tanstack/react-query";
+import { signOut } from "firebase/auth";
+import { auth } from "../api/firebaseConfig/firebase";
+import { useAppSelector } from "../reduxstore/hooks";
 
 const Account = () => {
   const navigation = useNavigation<any>();
+  
+  const firstName = useAppSelector((state) => state.information.firstName);
+  const lastName = useAppSelector((state) => state.information.lastName);
 
   function navigatePersonalInformationScreen() {
     navigation.navigate("AccountPersonalInformation");
+  }
+
+  async function logOutHandler() {
+    setTimeout(function () {
+      signOut(auth)
+        .then(() => {
+          navigateWelcomeScreen();
+        })
+        .catch((error) => {
+          // An error happened.
+        });
+    }, 1000);
   }
 
   function navigateWelcomeScreen() {
@@ -36,7 +55,9 @@ const Account = () => {
         contentFit="cover"
         source={require("../../assets/avatar1.png")}
       />
-      <Text style={styles.victoriaYoker}>Victoria Yoker</Text>
+
+      <Text style={styles.victoriaYoker}>{firstName} {lastName}</Text>
+
       <View style={styles.accountItem}>
         <TouchableOpacity style={styles.itemFlexBox} onPress={navigatePersonalInformationScreen}>
           <Image
@@ -90,7 +111,7 @@ const Account = () => {
         typeSecondaryLabelLabelTop={646}
         typeSecondaryLabelLabelLeft={16}
         typeSecondaryLabelLabelWidth={343}
-        onPress={navigateWelcomeScreen}
+        onPress={logOutHandler}
       />
     </View>
   );
@@ -115,7 +136,6 @@ const styles = StyleSheet.create({
   },
   victoriaYoker: {
     top: 210,
-    left: 131,
     fontSize: FontSize.bodyXLRegular_size,
     lineHeight: 24,
     fontWeight: "600",
@@ -123,6 +143,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: Color.lightUIElementContrast,
     position: "absolute",
+    alignSelf: "center"
   },
   accountIcon: {
     overflow: "hidden",

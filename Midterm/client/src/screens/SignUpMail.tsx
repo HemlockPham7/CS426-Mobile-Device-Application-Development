@@ -1,12 +1,12 @@
 import * as React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
-import Content1 from "../components/Content1";
 import AlternativeSignUp from "../components/AlternativeSignUp";
 import { Color } from "../../GlobalStyles";
+import Content3 from "../components/Content3";
 import { useNavigation } from "@react-navigation/native";
 
-const SignInMail = () => {
+const SignUpMail = () => {
   const navigation = useNavigation<any>();
 
   function navigateWelcomeScreen() {
@@ -15,7 +15,7 @@ const SignInMail = () => {
 
   return (
     <View style={styles.signInMail}>
-      <Content1 />
+      <Content3 />
       <TouchableOpacity onPress={navigateWelcomeScreen}>
         <Image
           style={styles.chevronIcon}
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignInMail;
+export default SignUpMail;

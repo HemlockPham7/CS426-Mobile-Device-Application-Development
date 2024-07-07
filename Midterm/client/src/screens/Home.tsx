@@ -5,8 +5,28 @@ import Facility1 from "../components/Facility1";
 import Tabbar2 from "../components/Tabbar2";
 import SearchField from "../components/SearchField";
 import { Border, FontFamily, Color, FontSize, Padding } from "../../GlobalStyles";
+import { getUserDatabase } from "../api/userData/informationUser";
+import { useAppDispatch } from "../reduxstore/hooks";
+import { updateEmail, updateFirstName, updateImage, updateIntroduction, updateLastName } from "../reduxstore/informationSlice";
 
 const Home = () => {
+  const dispatch = useAppDispatch();
+
+  React.useEffect(() => {
+    async function test() {
+      const dataInformationUser = await getUserDatabase();
+      dispatch(
+        updateIntroduction({ introduction: dataInformationUser.introduction })
+      );
+      // dispatch(updateImage({ urlImage: dataInformationUser.urlImage }));
+      dispatch(updateEmail({ email: dataInformationUser.email }));
+      dispatch(updateFirstName({ firstName: dataInformationUser.firstName }));
+      dispatch(updateLastName({ lastName: dataInformationUser.lastName }));
+      console.log(dataInformationUser);
+    }
+    test();
+  }, []);
+
   return (
     <View style={styles.home}>
       <View style={styles.content}>

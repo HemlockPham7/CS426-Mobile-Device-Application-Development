@@ -1,61 +1,51 @@
 import * as React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, TextInput, Alert } from "react-native";
 import { Image } from "expo-image";
-import Tabbar from "../components/Tabbar";
 import TypeTitle from "../components/TypeTitle";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
 import { FontSize, FontFamily, Border, Padding, Color } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
-import { useAppDispatch, useAppSelector } from "../reduxstore/hooks";
-import { updateFirstName, updateIntroduction, updateLastName } from "../reduxstore/informationSlice";
-import { saveFirstNameDatabase, saveIntroductionDatabase, saveLastNameDatabase } from "../api/userData/informationUser";
+import { useAppDispatch } from "../reduxstore/hooks";
+import { signUp } from "../api/authentication/auth";
+import { saveFirstNameDatabase, saveImageUrlDatabase, saveIntroductionDatabase, saveLastNameDatabase } from "../api/userData/informationUser";
+import { updateFirstName, updateImage, updateIntroduction, updateLastName } from "../reduxstore/informationSlice";
 
-const AccountPersonalInformation = () => {
-  const dispatch = useAppDispatch();
-
-  const navigation = useNavigation<any>();
-
-  function navigateAccountScreen() {
-    navigation.navigate("Account");
-  }
-
-  const firstName0 = useAppSelector((state) => state.information.firstName);
-  const lastName0 = useAppSelector((state) => state.information.lastName);
-  const introduction0 = useAppSelector((state) => state.information.introduction);
-  const email0 = useAppSelector((state) => state.information.email);
+function AccountSetting({ navigation, route }: any) {
 
   const [avatar, setAvatar] = React.useState(require("../../assets/avatar.png"));
-  const [firstName, setFirstName] = React.useState(firstName0);
-  const [lastName, setLastName] = React.useState(lastName0);
-  const [introduction, setIntroduction] = React.useState(introduction0);
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [phone, setPhone] = React.useState("");
 
-  async function handleSaveChanges() {
+  const dispatch = useAppDispatch();
+  const { email, password } = route.params;
+
+  async function register() {
     try {
-      await saveFirstNameDatabase(firstName);
-      await saveLastNameDatabase(lastName);
-      await saveIntroductionDatabase(introduction);
-      //await saveImageUrlDatabase(avatar);
-      dispatch(updateFirstName({ firstName: firstName }));
-      dispatch(updateLastName({ lastName: lastName }));
-      dispatch(updateIntroduction({ introduction: introduction }));
-      //dispatch(updateImage({ urlImage: avatar }));
-      navigation.navigate("Account");
+      await signUp(email, password);
+      try {
+        await saveFirstNameDatabase(firstName);
+        await saveLastNameDatabase(lastName);
+        await saveIntroductionDatabase(phone);
+        //await saveImageUrlDatabase(avatar);
+        dispatch(updateFirstName({ firstName: firstName }));
+        dispatch(updateLastName({ lastName: lastName }));
+        dispatch(updateIntroduction({ introduction: phone }));
+        //dispatch(updateImage({ urlImage: avatar }));
+        navigation.navigate("Home");
+      } catch (err) {
+        Alert.alert("SIGN UP FAILED", "Please sign up again");
+      }
     } catch (err) {
-      Alert.alert("Update Fail");
+      Alert.alert("SIGN UP FAILED", "Please sign up again");
     }
-  };
+  }
 
   return (
     <View style={styles.accountPersonalInformation}>
-      <Tabbar />
 
-      <TouchableOpacity style={styles.typearrow} onPress={navigateAccountScreen}>
-        <Image
-          style={styles.chevronIcon}
-          contentFit="cover"
-          source={require("../../assets/chevron.png")}
-        />
-        <Text style={styles.title}>Personal Information</Text>
+      <TouchableOpacity style={styles.typearrow}>
+        <Text style={styles.title}>Information Setting</Text>
       </TouchableOpacity>
 
       <View style={styles.accountItem}>
@@ -81,19 +71,19 @@ const AccountPersonalInformation = () => {
           <Text style={[styles.name, styles.nameTypo]}>Phone</Text>
           <TextInput 
             style={[styles.text, styles.nameTypo]}
-            placeholder={introduction}
-            onChangeText={(text: any) => setIntroduction(text)}
+            placeholder={phone}
+            onChangeText={(text: any) => setPhone(text)}
           />
         </View>
 
         <View style={[styles.typetitle, {marginTop: 16}]}>
           <Text style={[styles.name, styles.nameTypo]}>Email</Text>
-          <Text style={[styles.text, styles.nameTypo]}>{email0}</Text>
+          <Text style={[styles.text, styles.nameTypo]}>{email}</Text>
         </View>
       </View>
 
       <TypePrimaryLabelLabelSta
-        buttonText="Save changes"
+        buttonText="Save"
         typePrimaryLabelLabelStaPosition="absolute"
         typePrimaryLabelLabelStaTop={646}
         typePrimaryLabelLabelStaLeft={16}
@@ -106,7 +96,7 @@ const AccountPersonalInformation = () => {
         typePrimaryLabelLabelStaPaddingVertical="unset"
         typePrimaryLabelLabelStaMarginLeft="unset"
         typePrimaryLabelLabelStaTextColor="#fff"
-        onPress={handleSaveChanges}
+        onPress={register}
       />
 
       <View style={[styles.avatar, styles.avatarLayout]}>
@@ -220,4 +210,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AccountPersonalInformation;
+export default AccountSetting;

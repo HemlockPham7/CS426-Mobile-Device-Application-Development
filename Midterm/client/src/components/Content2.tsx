@@ -8,8 +8,12 @@ import { useNavigation } from "@react-navigation/native";
 const Content2 = () => {
   const navigation = useNavigation<any>();
 
-  function navigateSearchScreen() {
+  function navigateSignInScreen() {
     navigation.navigate("SignInMail");
+  }
+
+  function navigateSignUpScreen() {
+    navigation.navigate("SignUpMail");
   }
 
   return (
@@ -44,6 +48,7 @@ const Content2 = () => {
           typePrimaryLabelLabelStaPaddingVertical="unset"
           typePrimaryLabelLabelStaMarginLeft="unset"
           typePrimaryLabelLabelStaTextColor="#fff"
+          onPress={navigateSignUpScreen}
         />
         <TypePrimaryLabelLabelSta
           buttonText="Login"
@@ -59,7 +64,7 @@ const Content2 = () => {
           typePrimaryLabelLabelStaPaddingVertical="unset"
           typePrimaryLabelLabelStaMarginLeft="unset"
           typePrimaryLabelLabelStaTextColor="#fea36b"
-          onPress={navigateSearchScreen}
+          onPress={navigateSignInScreen}
         />
       </View>
     </View>

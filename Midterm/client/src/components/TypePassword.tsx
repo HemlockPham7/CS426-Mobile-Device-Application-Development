@@ -36,7 +36,7 @@ const TypePassword = ({
     <View style={[styles.typepassword, typePasswordStyle]}>
       <TextInput 
         style={styles.name} 
-        placeholder="Password"
+        placeholder={name1}
       />
       <Image style={styles.passwordIcon} contentFit="cover" source={password} />
     </View>
