@@ -15,7 +15,7 @@ const flightListSlice = createSlice({
   reducers: {
     initialFlightList: (state, action: PayloadAction<GeneralFlight[]>) => {
       state.flightList = action.payload;
-      console.log(state.flightList.length);
+      console.log(state.flightList);
     },
     deleteFlightList: (state, action: PayloadAction<string>) => {
       state.flightList = state.flightList.filter(

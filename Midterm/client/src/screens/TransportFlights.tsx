@@ -4,9 +4,17 @@ import { Image } from "expo-image";
 import Card from "../components/Card";
 import { Padding, FontSize, Color, FontFamily, Border } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
+import { useAppSelector } from "../reduxstore/hooks";
+import { GeneralFlight } from "../ClassObject/flightClass";
 
 const TransportFlights = () => {
   const navigation = useNavigation<any>();
+  const fromDestination = useAppSelector((state) => state.ticket.fromDestination);
+  const toDestination = useAppSelector((state) => state.ticket.toDestination);
+  console.log("fromDestination ", fromDestination);
+  console.log("toDestination ", toDestination);
+  
+  const flightList = useAppSelector((state) => state.flightInformation.flightList);
 
   function navigateTransportBookingScreen() {
     navigation.navigate("TransportBooking");
@@ -15,6 +23,10 @@ const TransportFlights = () => {
   function navigateTransportFiltersScreen() {
     navigation.navigate("TransportFilters");
   }
+
+  const filteredFlights = flightList.filter(
+    (flight: GeneralFlight) => flight.fromDestination === fromDestination && flight.toDestination === toDestination
+  );
 
   return (
     <View style={styles.transportFlights}>
@@ -54,7 +66,7 @@ const TransportFlights = () => {
 
         <View style={[styles.filter, styles.date1FlexBox]}>
           <Text style={[styles.flightsAvaliableNew, styles.textTypo]}>
-            7 flights avaliable New York to London
+            {filteredFlights.length} flights avaliable
           </Text>
           <TouchableOpacity style={styles.button} onPress={navigateTransportFiltersScreen}>
             <Image
@@ -66,13 +78,13 @@ const TransportFlights = () => {
         </View>
 
         <ScrollView style={styles.flights}>
-          <Card />
-          <Card propMarginTop={16} />
-          <Card propMarginTop={16} />
-          <Card propMarginTop={16} />
-          <Card propMarginTop={16} />
-          <Card propMarginTop={16} />
-          <Card propMarginTop={16} />
+          {filteredFlights.map((flight, index) => (
+            <Card
+              key={index} 
+              propMarginTop={index === 0 ? undefined : 16} 
+              {...flight}
+            />
+          ))}
         </ScrollView>
       </View>
       <TouchableOpacity style={styles.typearrow} onPress={navigateTransportBookingScreen}>

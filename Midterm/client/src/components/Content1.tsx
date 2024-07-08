@@ -58,7 +58,6 @@ const Content1 = () => {
     dispatch(updateLastName({ lastName: dataInformationUser.lastName }));
     console.log(dataInformationUser);
     const dataInformationFlight = await fetchFlights();
-    console.log(dataInformationFlight);
     dispatch(initialFlightList(dataInformationFlight));
   }
 

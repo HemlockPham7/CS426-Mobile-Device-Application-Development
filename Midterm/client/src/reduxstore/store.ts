@@ -9,7 +9,7 @@ export const store = configureStore({
     information: informationSlice,
     flight: flightSlice,
     ticket: ticketSlice,
-    flightList: flightListSlice,
+    flightInformation: flightListSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

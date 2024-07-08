@@ -7,6 +7,12 @@ import { useNavigation } from "@react-navigation/native";
 export type CardType = {
   /** Style props */
   propMarginTop?: number | string;
+  fromDestination?: string;
+  toDestination?: string;
+  price?: number;
+  flightNumber?: string;
+  date?: Date;
+  time?: string;
 };
 
 const getStyleValue = (key: string, value: string | number | undefined) => {
@@ -14,7 +20,15 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
   return { [key]: value === "unset" ? undefined : value };
 };
 
-const Card = ({ propMarginTop }: CardType) => {
+const Card = ({ 
+  propMarginTop,
+  fromDestination,
+  toDestination,
+  price,
+  flightNumber,
+  date,
+  time,
+}: CardType) => {
   const cardStyle = useMemo(() => {
     return {
       ...getStyleValue("marginTop", propMarginTop),
@@ -27,6 +41,21 @@ const Card = ({ propMarginTop }: CardType) => {
     navigation.navigate("TransportSelectSeats");
   }
 
+  const splitDestination = (destination?: string) => {
+    if (!destination) return ["", ""];
+    const lastIndex = destination.lastIndexOf(" (");
+    if (lastIndex !== -1) {
+      const cityName = destination.substring(0, lastIndex);
+      const cityCode = destination.substring(lastIndex + 2, destination.length - 1);
+      return [cityName, cityCode];
+    } else {
+      return [destination, ""];
+    }
+  };
+
+  const [fromCityName, fromCityCode] = splitDestination(fromDestination);
+  const [toCityName, toCityCode] = splitDestination(toDestination);
+
   return (
     <TouchableOpacity style={[styles.card, cardStyle]} onPress={navigateTransportSelectSeatsScreen}>
       <Image
@@ -37,26 +66,27 @@ const Card = ({ propMarginTop }: CardType) => {
       <View style={[styles.info, styles.infoPosition]}>
         <View>
           <Text style={styles.date1}>Date</Text>
-          <Text style={styles.jun}>02 Jun</Text>
+          <Text style={styles.jun}>{date.toLocaleDateString()}</Text>
         </View>
         <View>
           <Text style={styles.date1}>Departure</Text>
-          <Text style={styles.jun}>9:00 AM</Text>
+          <Text style={styles.jun}>{time}</Text>
         </View>
         <View>
           <Text style={styles.date1}>Price</Text>
-          <Text style={styles.jun}>$50</Text>
+          <Text style={styles.jun}>${price}</Text>
         </View>
         <View>
           <Text style={styles.date1}>Number</Text>
-          <Text style={styles.jun}>NL-41</Text>
+          <Text style={styles.jun}>{flightNumber}</Text>
         </View>
       </View>
       <View style={[styles.location, styles.dividerLayout]}>
         <View>
-          <Text style={styles.date1}>NYC</Text>
-          <Text style={styles.jun}>New York</Text>
+          <Text style={styles.date1}>{fromCityCode}</Text>
+          <Text style={styles.jun}>{fromCityName}</Text>
         </View>
+        
         <View style={styles.loading}>
           <View style={styles.load}>
             <Image
@@ -77,9 +107,10 @@ const Card = ({ propMarginTop }: CardType) => {
             source={require("../../assets/ticket-transport1.png")}
           />
         </View>
+
         <View style={styles.to}>
-          <Text style={styles.date1}>LDN</Text>
-          <Text style={styles.jun}>London</Text>
+          <Text style={styles.date1}>{toCityCode}</Text>
+          <Text style={styles.jun}>{toCityName}</Text>
         </View>
       </View>
       <View style={[styles.divider, styles.dividerBorder]} />
@@ -118,7 +149,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   jun: {
-    fontSize: FontSize.bodyXLRegular_size,
+    fontSize: 10,
     lineHeight: 22,
     fontFamily: FontFamily.bodyMRegular,
     color: Color.lightUIElementContrast,
