@@ -1,13 +1,14 @@
 import * as React from "react";
 import { Image } from "expo-image";
-import { StyleSheet, View, Text, TouchableOpacity, Modal, ScrollView } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, Modal, ScrollView, Alert } from "react-native";
 import Fields from "../components/Fields";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
 import Facility from "../components/Facility";
 import Tabbar1 from "../components/Tabbar1";
 import { FontSize, FontFamily, Color, Padding, Border } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
-import { useAppSelector } from "../reduxstore/hooks";
+import { useAppDispatch, useAppSelector } from "../reduxstore/hooks";
+import { updateAdults, updateBabies, updateLuggages, updatePets } from "../reduxstore/ticketSlice";
 
 const TransportBooking = () => {
   const [openModal1, setOpenModal1] = React.useState(false);
@@ -27,13 +28,27 @@ const TransportBooking = () => {
   const [luggage, setLuggage] = React.useState(luggages);
 
   const navigation = useNavigation<any>();
+  const dispatch = useAppDispatch();
+  const depDate = useAppSelector((state) => state.ticket.depDate);
+  const retDate = useAppSelector((state) => state.ticket.retDate);
 
   function navigateBookingScreen() {
     navigation.navigate("Booking");
   }
 
-  function navigateTransportFlightsScreen() {
-    navigation.navigate("TransportFlights");
+  function handleSearch() {
+    const totalPassengers = adult + baby;
+    if (totalPassengers > 5) {
+      Alert.alert("Total passengers will not be larger than 5");
+    } else if (retDate > depDate) {
+      dispatch(updateAdults({ adults: adult }));
+      dispatch(updateBabies({ babies: baby }));
+      dispatch(updatePets({ pets: pet }));
+      dispatch(updateLuggages({ luggages: luggage }));
+      navigation.navigate("TransportFlights");
+    } else {
+      Alert.alert("Return date must be after departure date");
+    }
   }
 
   return (
@@ -154,7 +169,7 @@ const TransportBooking = () => {
           typePrimaryLabelLabelStaPaddingVertical="unset"
           typePrimaryLabelLabelStaMarginLeft="unset"
           typePrimaryLabelLabelStaTextColor="#fff"
-          onPress={navigateTransportFlightsScreen}
+          onPress={handleSearch}
         />
       </View>
       <Tabbar1 />

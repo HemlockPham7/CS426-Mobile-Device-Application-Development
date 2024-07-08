@@ -1,22 +1,22 @@
 import * as React from "react";
 import { Text, StyleSheet, View, TouchableOpacity, Modal, ScrollView, Platform } from "react-native";
 import { Image } from "expo-image";
-import TypeTitle from "./TypeTitle";
 import { Border, Color, FontFamily, FontSize, Padding } from "../../GlobalStyles";
-import { useAppSelector } from "../reduxstore/hooks";
+import { useAppDispatch, useAppSelector } from "../reduxstore/hooks";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { updateDepDate, updateRetDate } from "../reduxstore/ticketSlice";
+import { updateFromDestination, updateToDestination } from "../reduxstore/flightSlice";
 
 const Fields = () => {
+  const dispatch = useAppDispatch();
+
   const [openModal1, setOpenModal1] = React.useState(false);
   const [openModal2, setOpenModal2] = React.useState(false);
   const [openModal3, setOpenModal3] = React.useState(false);
   const [openModal4, setOpenModal4] = React.useState(false);
   
-  
   const fromDestination = useAppSelector((state) => state.ticket.fromDestination);
   const toDestination = useAppSelector((state) => state.ticket.toDestination);
-  const depDate = useAppSelector((state) => state.ticket.depDate);
-  const retDate = useAppSelector((state) => state.ticket.retDate);
 
   const [fromDes, setFromDes] = React.useState(fromDestination);
   const [toDes, setToDes] = React.useState(toDestination);
@@ -28,21 +28,25 @@ const Fields = () => {
     const tempToDes = toDes;
     setFromDes(tempToDes);
     setToDes(tempFromDes);
+    dispatch(updateFromDestination({ fromDestination: fromDes }));
+    dispatch(updateToDestination({ toDestination: toDes }));
   }
 
   const handleDepDateChange = (event, selectedDate) => {
     if (selectedDate) {
-      console.log(selectedDate); // Debugging: Log the selectedDate to understand its format
-      setDep(selectedDate); // Update state with Date object
-      setOpenModal3(false); // Close the modal after date selection
+      console.log(selectedDate); 
+      setDep(selectedDate); 
+      setOpenModal3(false); 
+      dispatch(updateDepDate({ depDate: dep }));
     }
   }
 
   const handleRetDateChange = (event, selectedDate) => {
     if (selectedDate) {
-      console.log(selectedDate); // Debugging: Log the selectedDate to understand its format
-      setRet(selectedDate); // Update state with Date object
-      setOpenModal4(false); // Close the modal after date selection
+      console.log(selectedDate); 
+      setRet(selectedDate); 
+      setOpenModal4(false); 
+      dispatch(updateRetDate({ retDate: ret }))
     }
   }
 
@@ -86,34 +90,34 @@ const Fields = () => {
         <View style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
           <View style={{backgroundColor: "white", padding: 15, width: '95%', height: 300, borderRadius: 10}}>
             <ScrollView>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("New York (NYC)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("New York (NYC)"); dispatch(updateFromDestination({ fromDestination: fromDes }));}} >
                 <Text style={styles.textmodal}>New York (NYC)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Los Angeles (LA)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Los Angeles (LA)"); dispatch(updateFromDestination({ fromDestination: fromDes }));}}>
                 <Text style={styles.textmodal}>Los Angeles (LA)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Chicago (CHI)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Chicago (CHI)"); dispatch(updateFromDestination({ fromDestination: fromDes }));}}>
                 <Text style={styles.textmodal}>Chicago (CHI)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Houston (HOU))")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Houston (HOU))"); dispatch(updateFromDestination({ fromDestination: fromDes }));}}>
                 <Text style={styles.textmodal}>Houston (HOU)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Dallas (DAL)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Dallas (DAL)"); dispatch(updateFromDestination({ fromDestination: fromDes }));}}>
                 <Text style={styles.textmodal}>Dallas (DAL)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("San Jose (SJC)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("San Jose (SJC)"); dispatch(updateFromDestination({ fromDestination: fromDes }));}}>
                 <Text style={styles.textmodal}>San Jose (SJC)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Memphis (MEM)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Memphis (MEM)"); dispatch(updateFromDestination({ fromDestination: fromDes }));}}>
                 <Text style={styles.textmodal}>Memphis (MEM)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("San Diego (SAN)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("San Diego (SAN)"); dispatch(updateFromDestination({ fromDestination: fromDes }));}}>
                 <Text style={styles.textmodal}>San Diego (SAN)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("San Francisco (SFO)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("San Francisco (SFO)"); dispatch(updateFromDestination({ fromDestination: fromDes }));}}>
                 <Text style={styles.textmodal}>San Francisco (SFO)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Denver (DEN)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setFromDes("Denver (DEN)"); dispatch(updateFromDestination({ fromDestination: fromDes }));}}>
                 <Text style={styles.textmodal}>Denver (DEN)</Text>
               </TouchableOpacity>
             </ScrollView>
@@ -125,34 +129,34 @@ const Fields = () => {
         <View style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
           <View style={{backgroundColor: "white", padding: 15, width: '95%', height: 300, borderRadius: 10}}>
             <ScrollView>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("New York (NYC)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("New York (NYC)"); dispatch(updateToDestination({ toDestination: toDes }));}}>
                 <Text style={styles.textmodal}>New York (NYC)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Los Angeles (LA)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Los Angeles (LA)"); dispatch(updateToDestination({ toDestination: toDes }));}}>
                 <Text style={styles.textmodal}>Los Angeles (LA)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Chicago (CHI)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Chicago (CHI)"); dispatch(updateToDestination({ toDestination: toDes }));}}>
                 <Text style={styles.textmodal}>Chicago (CHI)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Houston (HOU))")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Houston (HOU))"); dispatch(updateToDestination({ toDestination: toDes }));}}>
                 <Text style={styles.textmodal}>Houston (HOU)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Dallas (DAL)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Dallas (DAL)"); dispatch(updateToDestination({ toDestination: toDes }));}}>
                 <Text style={styles.textmodal}>Dallas (DAL)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("San Jose (SJC)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("San Jose (SJC)"); dispatch(updateToDestination({ toDestination: toDes }));}}>
                 <Text style={styles.textmodal}>San Jose (SJC)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Memphis (MEM)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Memphis (MEM)"); dispatch(updateToDestination({ toDestination: toDes }));}}>
                 <Text style={styles.textmodal}>Memphis (MEM)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("San Diego (SAN)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("San Diego (SAN)"); dispatch(updateToDestination({ toDestination: toDes }));}}>
                 <Text style={styles.textmodal}>San Diego (SAN)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("San Francisco (SFO)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("San Francisco (SFO)"); dispatch(updateToDestination({ toDestination: toDes }));}}>
                 <Text style={styles.textmodal}>San Francisco (SFO)</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Denver (DEN)")}}>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setToDes("Denver (DEN)"); dispatch(updateToDestination({ toDestination: toDes }));}}>
                 <Text style={styles.textmodal}>Denver (DEN)</Text>
               </TouchableOpacity>
             </ScrollView>

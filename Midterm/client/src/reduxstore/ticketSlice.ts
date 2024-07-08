@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const formatDate = (date: Date): string => {
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  const year = date.getFullYear().toString();
-  return `${month}/${day}/${year}`;
-};
-
 const today = new Date();
 export interface TicketState {
   id: string;
@@ -17,8 +10,8 @@ export interface TicketState {
   luggages: number;
   fromDestination: string;
   toDestination: string;
-  depDate: string;
-  retDate: string;
+  depDate: Date;
+  retDate: Date;
   price: string;
   ticketNumber: string;
   seats: string[];
@@ -33,8 +26,8 @@ const initialState: TicketState = {
   luggages: 0,
   fromDestination: "New York (NYC)",
   toDestination: "London (LDN)",
-  depDate: formatDate(today),
-  retDate: formatDate(today),
+  depDate: today,
+  retDate: today,
   price: "",
   ticketNumber: "",
   seats: [],
@@ -99,14 +92,14 @@ const ticketSlice = createSlice({
     clearTicket: (state) => {
       state.id = "";
       state.flightID = "";
-      state.adults = 0;
+      state.adults = 1;
       state.babies = 0;
       state.pets = 0;
       state.luggages = 0;
-      state.fromDestination = "";
-      state.toDestination = "";
-      state.depDate = "";
-      state.retDate = "";
+      state.fromDestination = "New York (NYC)";
+      state.toDestination = "London (LDN)";
+      state.depDate = today;
+      state.retDate = today;
       state.price = "";
       state.ticketNumber = "";
       state.seats = [];
