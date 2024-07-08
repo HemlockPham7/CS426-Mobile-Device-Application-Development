@@ -4,9 +4,9 @@ export interface FlightState {
   id: string;
   fromDestination: string;
   toDestination: string;
-  date: string;
+  date: Date;
   time: string;
-  price: string;
+  price: number;
   flightNumber: string;
   seats: string[];
 }
@@ -15,9 +15,9 @@ const initialState: FlightState = {
   id: "",
   fromDestination: "",
   toDestination: "",
-  date: "",
+  date: new Date(),
   time: "",
-  price: "",
+  price: 0,
   flightNumber: "",
   seats: [],
 };
@@ -62,9 +62,9 @@ const flightSlice = createSlice({
       state.id = "";
       state.fromDestination = "";
       state.toDestination = "";
-      state.date = "";
+      state.date = new Date();
       state.time = "";
-      state.price = "";
+      state.price = 0;
       state.flightNumber = "";
       state.seats = [];
       console.log("Clear flight information");

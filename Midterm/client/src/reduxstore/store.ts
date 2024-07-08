@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import informationSlice from './informationSlice';
 import flightSlice from './flightSlice';
 import ticketSlice from './ticketSlice';
+import flightListSlice from './flightListSlice';
 
 export const store = configureStore({
   reducer: {
     information: informationSlice,
     flight: flightSlice,
     ticket: ticketSlice,
+    flightList: flightListSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
