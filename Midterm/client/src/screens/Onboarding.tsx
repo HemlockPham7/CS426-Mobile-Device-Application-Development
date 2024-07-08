@@ -9,7 +9,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { clearInformation, updateUid } from "../reduxstore/informationSlice";
 import { auth } from "../api/firebaseConfig/firebase";
 import { clearTicket } from "../reduxstore/ticketSlice";
-
+import { clearFlightList } from "../reduxstore/flightListSlice";
+import { clearFlight } from "../reduxstore/flightSlice";
 const Onboarding = () => {
   const uid = useAppSelector((state) => state.information.uid);
   console.log("uid now: ", uid);
@@ -25,6 +26,8 @@ const Onboarding = () => {
       } else {
         dispatch(clearInformation());
         dispatch(clearTicket());
+        dispatch(clearFlight());
+        dispatch(clearFlightList());
         console.log("No user yet");
       }
     });

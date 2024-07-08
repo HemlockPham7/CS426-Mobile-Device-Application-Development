@@ -10,6 +10,8 @@ import { signIn } from "../api/authentication/auth";
 import { getUserDatabase } from "../api/userData/informationUser";
 import { useAppDispatch } from "../reduxstore/hooks";
 import { updateEmail, updateFirstName, updateImage, updateIntroduction, updateLastName } from "../reduxstore/informationSlice";
+import { fetchFlights } from "../api/userData/informationFlight";
+import { initialFlightList } from "../reduxstore/flightListSlice";
 
 const Content1 = () => {
   const [enteredEmail, setEnteredEmail] = React.useState("");
@@ -55,6 +57,9 @@ const Content1 = () => {
     dispatch(updateFirstName({ firstName: dataInformationUser.firstName }));
     dispatch(updateLastName({ lastName: dataInformationUser.lastName }));
     console.log(dataInformationUser);
+    const dataInformationFlight = await fetchFlights();
+    console.log(dataInformationFlight);
+    dispatch(initialFlightList(dataInformationFlight));
   }
 
   async function logInUser(email: string, password: string) {

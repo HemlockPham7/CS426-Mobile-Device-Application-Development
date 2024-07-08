@@ -15,6 +15,7 @@ const flightListSlice = createSlice({
   reducers: {
     initialFlightList: (state, action: PayloadAction<GeneralFlight[]>) => {
       state.flightList = action.payload;
+      console.log(state.flightList.length);
     },
     deleteFlightList: (state, action: PayloadAction<string>) => {
       state.flightList = state.flightList.filter(
@@ -24,8 +25,12 @@ const flightListSlice = createSlice({
     addFlightList: (state, action: PayloadAction<GeneralFlight>) => {
       state.flightList.push(action.payload);
     },
+    clearFlightList: (state) => {
+      state.flightList = [];
+      console.log("Clear flight list");
+    },
   }
 });
 
-export const { initialFlightList, deleteFlightList, addFlightList } = flightListSlice.actions;
+export const { initialFlightList, deleteFlightList, addFlightList, clearFlightList } = flightListSlice.actions;
 export default flightListSlice.reducer;
