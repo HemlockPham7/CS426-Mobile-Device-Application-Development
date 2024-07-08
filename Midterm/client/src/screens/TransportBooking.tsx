@@ -1,14 +1,31 @@
 import * as React from "react";
 import { Image } from "expo-image";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, Modal, ScrollView } from "react-native";
 import Fields from "../components/Fields";
 import TypePrimaryLabelLabelSta from "../components/TypePrimaryLabelLabelSta";
 import Facility from "../components/Facility";
 import Tabbar1 from "../components/Tabbar1";
-import { FontSize, FontFamily, Color, Padding } from "../../GlobalStyles";
+import { FontSize, FontFamily, Color, Padding, Border } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
+import { useAppSelector } from "../reduxstore/hooks";
 
 const TransportBooking = () => {
+  const [openModal1, setOpenModal1] = React.useState(false);
+  const [openModal2, setOpenModal2] = React.useState(false);
+  const [openModal3, setOpenModal3] = React.useState(false);
+  const [openModal4, setOpenModal4] = React.useState(false);
+
+  
+  const adults = useAppSelector((state) => state.ticket.adults);
+  const babies = useAppSelector((state) => state.ticket.babies);
+  const pets = useAppSelector((state) => state.ticket.pets);
+  const luggages = useAppSelector((state) => state.ticket.luggages);
+
+  const [adult, setAdult] = React.useState(adults);
+  const [baby, setBaby] = React.useState(babies);
+  const [pet, setPet] = React.useState(pets);
+  const [luggage, setLuggage] = React.useState(luggages);
+
   const navigation = useNavigation<any>();
 
   function navigateBookingScreen() {
@@ -37,44 +54,53 @@ const TransportBooking = () => {
           <Text style={styles.passengerLuggage1}>{`Passenger & Luggage`}</Text>
 
           <View style={styles.transportSpaceBlock}>
-            <View>
+            <TouchableOpacity  onPress={() => setOpenModal1(true)}>
               <View style={styles.icon}>
                 <Image
                   style={[styles.component2Icon, styles.component2IconLayout]}
                   contentFit="cover"
                   source={require("../../assets/component-2.png")}
                 />
-                <Text style={styles.text}>1</Text>
+                <Text style={styles.text}>{adult}</Text>
               </View>
               <View style={[styles.line, styles.lineLayout]} />
-            </View>
+            </TouchableOpacity>
 
-            <View style={styles.passenger1}>
-              <Image
-                style={styles.component2IconLayout}
-                contentFit="cover"
-                source={require("../../assets/component-21.png")}
-              />
-              <View style={[styles.line1, styles.lineLayout]} />
-            </View>
+            <TouchableOpacity style={{marginLeft: 24}} onPress={() => setOpenModal2(true)}>
+              <View style={styles.icon}>
+                <Image
+                  style={[styles.component2Icon, styles.component2IconLayout]}
+                  contentFit="cover"
+                  source={require("../../assets/component-21.png")}
+                />
+                <Text style={styles.text}>{baby}</Text>
+              </View>
+              <View style={[styles.line, styles.lineLayout]} />
+            </TouchableOpacity>
 
-            <View style={styles.passenger1}>
-              <Image
-                style={styles.component2IconLayout}
-                contentFit="cover"
-                source={require("../../assets/component-22.png")}
-              />
-              <View style={[styles.line1, styles.lineLayout]} />
-            </View>
+            <TouchableOpacity style={{marginLeft: 24}} onPress={() => setOpenModal3(true)}>
+              <View style={styles.icon}>
+                <Image
+                  style={[styles.component2Icon, styles.component2IconLayout]}
+                  contentFit="cover"
+                  source={require("../../assets/component-22.png")}
+                />
+                <Text style={styles.text}>{pet}</Text>
+              </View>
+              <View style={[styles.line, styles.lineLayout]} />
+            </TouchableOpacity>
 
-            <View style={styles.passenger1}>
-              <Image
-                style={[styles.component2Icon, styles.component2IconLayout]}
-                contentFit="cover"
-                source={require("../../assets/component-23.png")}
-              />
-              <View style={[styles.line1, styles.lineLayout]} />
-            </View>
+            <TouchableOpacity style={{marginLeft: 24}} onPress={() => setOpenModal4(true)}>
+              <View style={styles.icon}>
+                <Image
+                  style={[styles.component2Icon, styles.component2IconLayout]}
+                  contentFit="cover"
+                  source={require("../../assets/component-23.png")}
+                />
+                <Text style={styles.text}>{luggage}</Text>
+              </View>
+              <View style={[styles.line, styles.lineLayout]} />
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -132,6 +158,111 @@ const TransportBooking = () => {
         />
       </View>
       <Tabbar1 />
+
+      <Modal visible={openModal1} animationType="slide" transparent={true}>
+        <View style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <View style={{backgroundColor: "white", padding: 15, width: '95%', height: 300, borderRadius: 10}}>
+            <ScrollView>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setAdult(1)}}>
+                <Text style={styles.textmodal}>1</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setAdult(2)}}>
+                <Text style={styles.textmodal}>2</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setAdult(3)}}>
+                <Text style={styles.textmodal}>3</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setAdult(4)}}>
+                <Text style={styles.textmodal}>4</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal1(false); setAdult(5)}}>
+                <Text style={styles.textmodal}>5</Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal visible={openModal2} animationType="slide" transparent={true}>
+        <View style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <View style={{backgroundColor: "white", padding: 15, width: '95%', height: 300, borderRadius: 10}}>
+            <ScrollView>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setBaby(0)}}>
+                <Text style={styles.textmodal}>0</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setBaby(1)}}>
+                <Text style={styles.textmodal}>1</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setBaby(2)}}>
+                <Text style={styles.textmodal}>2</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setBaby(3)}}>
+                <Text style={styles.textmodal}>3</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setBaby(4)}}>
+                <Text style={styles.textmodal}>4</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal2(false); setBaby(5)}}>
+                <Text style={styles.textmodal}>5</Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal visible={openModal3} animationType="slide" transparent={true}>
+        <View style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <View style={{backgroundColor: "white", padding: 15, width: '95%', height: 300, borderRadius: 10}}>
+            <ScrollView>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal3(false); setPet(0)}}>
+                <Text style={styles.textmodal}>0</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal3(false); setPet(1)}}>
+                <Text style={styles.textmodal}>1</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal3(false); setPet(2)}}>
+                <Text style={styles.textmodal}>2</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal3(false); setPet(3)}}>
+                <Text style={styles.textmodal}>3</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal3(false); setPet(4)}}>
+                <Text style={styles.textmodal}>4</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal3(false); setPet(5)}}>
+                <Text style={styles.textmodal}>5</Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal visible={openModal4} animationType="slide" transparent={true}>
+        <View style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <View style={{backgroundColor: "white", padding: 15, width: '95%', height: 300, borderRadius: 10}}>
+            <ScrollView>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal4(false); setLuggage(0)}}>
+                <Text style={styles.textmodal}>0</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal4(false); setLuggage(1)}}>
+                <Text style={styles.textmodal}>1</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal4(false); setLuggage(2)}}>
+                <Text style={styles.textmodal}>2</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal4(false); setLuggage(3)}}>
+                <Text style={styles.textmodal}>3</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal4(false); setLuggage(4)}}>
+                <Text style={styles.textmodal}>4</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.choosingmodal} onPress={() => {setOpenModal4(false); setLuggage(5)}}>
+                <Text style={styles.textmodal}>5</Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -232,6 +363,25 @@ const styles = StyleSheet.create({
     left: 0,
     position: "absolute",
   },
+  textmodal: {
+    textAlign: "center",
+    fontFamily: FontFamily.bodyMRegular,
+    fontSize: FontSize.bodyXLRegular_size,
+    lineHeight: 22,
+    color: Color.lightUIElementContrast,
+    marginTop: 4,
+  },
+  choosingmodal: {
+    borderRadius: Border.br_mini,
+    backgroundColor: Color.lightTextWhite,
+    height: 54,
+    paddingHorizontal: Padding.p_base,
+    paddingTop: Padding.p_9xs,
+    paddingBottom: Padding.p_base,
+    width: 320, 
+    borderWidth: 1,
+    marginTop: 8,
+  }
 });
 
 export default TransportBooking;

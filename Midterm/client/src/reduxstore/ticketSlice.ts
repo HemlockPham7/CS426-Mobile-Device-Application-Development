@@ -5,6 +5,8 @@ export interface TicketState {
   flightID: string;
   adults: number;
   babies: number;
+  pets: number;
+  luggages: number;
   fromDestination: string;
   toDestination: string;
   depDate: string;
@@ -17,8 +19,10 @@ export interface TicketState {
 const initialState: TicketState = {
   id: "",
   flightID: "",
-  adults: 0,
+  adults: 1,
   babies: 0,
+  pets: 0,
+  luggages: 0,
   fromDestination: "New York (NYC)",
   toDestination: "London (LDN)",
   depDate: "",
@@ -47,6 +51,14 @@ const ticketSlice = createSlice({
     updateBabies: (state, action: PayloadAction<any>) => {
       state.babies = action.payload.babies;
       console.log("Update new babies: " + state.babies);
+    },
+    updatePets: (state, action: PayloadAction<any>) => {
+      state.pets = action.payload.pets;
+      console.log("Update new pets: " + state.pets);
+    },
+    updateLuggages: (state, action: PayloadAction<any>) => {
+      state.luggages = action.payload.luggages;
+      console.log("Update new luggages: " + state.luggages);
     },
     updateFromDestination: (state, action: PayloadAction<any>) => {
       state.fromDestination = action.payload.fromDestination;
@@ -81,6 +93,8 @@ const ticketSlice = createSlice({
       state.flightID = "";
       state.adults = 0;
       state.babies = 0;
+      state.pets = 0;
+      state.luggages = 0;
       state.fromDestination = "";
       state.toDestination = "";
       state.depDate = "";
@@ -98,6 +112,8 @@ export const {
   updateFlightID,
   updateAdults,
   updateBabies,
+  updatePets,
+  updateLuggages,
   updateFromDestination,
   updateToDestination,
   updateDepDate,
