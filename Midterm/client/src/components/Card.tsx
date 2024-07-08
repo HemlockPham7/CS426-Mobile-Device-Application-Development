@@ -3,6 +3,8 @@ import { Image } from "expo-image";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FontSize, FontFamily, Color } from "../../GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
+import { useAppDispatch } from "../reduxstore/hooks";
+import { updateDate, updateFlightNumber, updateFromDestination, updateTime, updateToDestination } from "../reduxstore/flightSlice";
 
 export type CardType = {
   /** Style props */
@@ -36,8 +38,14 @@ const Card = ({
   }, [propMarginTop]);
 
   const navigation = useNavigation<any>();
+  const dispatch = useAppDispatch();
 
   function navigateTransportSelectSeatsScreen() {
+    dispatch(updateFromDestination({ fromDestination: fromDestination }));
+    dispatch(updateToDestination({ toDestination: toDestination }));
+    dispatch(updateDate({ date: date }));
+    dispatch(updateTime({ time: time }));
+    dispatch(updateFlightNumber({ flightNumber: flightNumber }));
     navigation.navigate("TransportSelectSeats");
   }
 
@@ -86,7 +94,7 @@ const Card = ({
           <Text style={styles.date1}>{fromCityCode}</Text>
           <Text style={styles.jun}>{fromCityName}</Text>
         </View>
-        
+
         <View style={styles.loading}>
           <View style={styles.load}>
             <Image

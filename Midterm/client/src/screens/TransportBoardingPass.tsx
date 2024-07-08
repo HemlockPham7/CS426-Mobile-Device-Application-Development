@@ -13,7 +13,7 @@ const TransportBoardingPass = () => {
     navigation.navigate("TransportSelectSeats");
   }
 
-  function navigateHomeScreen() {
+  function handleDownload() {
     navigation.navigate("Home");
   }
 
@@ -42,7 +42,7 @@ const TransportBoardingPass = () => {
         typePrimaryLabelLabelStaPaddingVertical="unset"
         typePrimaryLabelLabelStaMarginLeft="unset"
         typePrimaryLabelLabelStaTextColor="#fff"
-        onPress={navigateHomeScreen}
+        onPress={handleDownload}
       />
 
       <TouchableOpacity style={styles.typearrow} onPress={navigateTransportSelectSeatsScreen}>
